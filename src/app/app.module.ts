@@ -58,7 +58,7 @@ import { ChartsModule } from 'ng2-charts';
     TabsModule.forRoot(),
     ChartsModule,
     IconModule,
-    IconSetModule.forRoot(),
+    IconSetModule.forRoot()
   ],
   declarations: [
     AppComponent,
