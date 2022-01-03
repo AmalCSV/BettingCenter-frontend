@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AppComponent } from './app.component';
 
 // Import Containers
 import { DefaultLayoutComponent } from './containers';
@@ -37,6 +38,14 @@ export const routes: Routes = [
     }
   },
   {
+    path: 'auth',
+    component: AppComponent,
+    data: {
+      title: 'Auth'
+    },
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
+  {
     path: 'register',
     component: RegisterComponent,
     data: {
@@ -53,10 +62,6 @@ export const routes: Routes = [
       {
         path: 'base',
         loadChildren: () => import('./views/base/base.module').then(m => m.BaseModule)
-      },
-      {
-        path: 'auth',
-        loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
       },
       {
         path: 'buttons',
