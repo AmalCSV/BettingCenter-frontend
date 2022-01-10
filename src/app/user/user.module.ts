@@ -7,12 +7,14 @@ import { CreateComponent } from './create/create.component';
 import { UserService } from './user.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { ListComponent } from './list/list.component';
 
 
 @NgModule({
   declarations: [
     UserComponent,
-    CreateComponent
+    CreateComponent,
+    ListComponent
   ],
   imports: [
     CommonModule,

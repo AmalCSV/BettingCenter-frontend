@@ -1,6 +1,6 @@
 <div class="animated fadeIn">
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
                     <strong>Create</strong> User
@@ -58,11 +58,20 @@
                     </form>
                 </div>
                 <div class="card-footer">
-                    <button [disabled]="userForm.invalid" type="submit" class="btn btn-sm btn-primary" (click)="onSubmit()"><i class="fa fa-dot-circle-o"></i>
+                    <button [disabled]="userForm.invalid" type="submit" class="btn btn-sm btn-primary"
+                        (click)="onSubmit()"><i class="fa fa-dot-circle-o"></i>
                         Submit</button>
                     <button type="button" class="btn btn-sm btn-danger" (click)="resetForm()"><i class="fa fa-ban"></i>
                         Reset</button>
                 </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <strong>User</strong> List
+                </div>
+                <app-user-list></app-user-list>
             </div>
         </div>
     </div>

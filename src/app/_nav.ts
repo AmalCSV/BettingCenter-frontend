@@ -31,7 +31,7 @@ export const navItems: INavData[] = [
       },
       {
         name: 'List User',
-        url: '/user/create',
+        url: '/user/list',
         icon: 'cil-list-rich'
       }
     ]
