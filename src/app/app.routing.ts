@@ -72,6 +72,10 @@ export const routes: Routes = [
         loadChildren: () => import('./betting/betting.module').then(m => m.BettingModule)
       },
       {
+        path: 'user',
+        loadChildren: () => import('./user/user.module').then(m => m.UserModule)
+      },
+      {
         path: 'charts',
         loadChildren: () => import('./views/chartjs/chartjs.module').then(m => m.ChartJSModule)
       },
