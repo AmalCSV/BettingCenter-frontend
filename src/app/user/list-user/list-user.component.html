@@ -7,44 +7,17 @@
             <th>Action</th>
         </tr>
     </thead>
+
     <tbody>
-        <tr>
+        <tr *ngFor="let user of userList;">
             <td>
-                <div>Kasun</div>
-            </td>
-            <td>
-                <div>Abaywardana</div>
+                <div>{{user.firstName}}</div>
             </td>
             <td>
-                <div>kasunab</div>
-            </td>
-            <td class="text-center">
-                <div><i class="fa fa-trash"></i></div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div>Rukshika</div>
+                <div>{{user.lastName}}</div>
             </td>
             <td>
-                <div>Madushani</div>
-            </td>
-            <td>
-                <div>rukshi01</div>
-            </td>
-            <td class="text-center">
-                <div><i class="fa fa-trash"></i></div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div>Amal</div>
-            </td>
-            <td>
-                <div>Somaweera</div>
-            </td>
-            <td>
-                <div>amals2</div>
+                <div>{{user.UserName}}</div>
             </td>
             <td class="text-center">
                 <div><i class="fa fa-trash"></i></div>
