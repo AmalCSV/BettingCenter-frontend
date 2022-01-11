@@ -19,6 +19,23 @@ export const navItems: INavData[] = [
     url: '/betting/all',
     icon: 'cil-money'
   },
+  {
+    name: 'User',
+    url: '/user/create',
+    icon: 'cil-people',
+    children: [
+      {
+        name: 'Create User',
+        url: '/user/create',
+        icon: 'cil-user-plus'
+      },
+      {
+        name: 'List User',
+        url: '/user/list',
+        icon: 'cil-list-rich'
+      }
+    ]
+  },
   // {
   //   name: 'Colors',
   //   url: '/theme/colors',
