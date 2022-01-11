@@ -15,6 +15,22 @@ export class CreateUserComponent implements OnInit {
     password: new FormControl('', [Validators.required, Validators.minLength(8)])
   });
 
+  public userList = [
+    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"},
+    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"},
+    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"},
+    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"},
+    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"},
+    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"},
+    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"},
+    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"},
+    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"},
+    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"},
+    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"},
+    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"},
+    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"}
+  ]
+
   constructor() { }
 
   ngOnInit(): void {

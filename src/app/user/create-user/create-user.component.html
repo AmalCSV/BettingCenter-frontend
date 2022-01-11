@@ -71,7 +71,22 @@
                 <div class="card-header">
                     <strong>User</strong> List
                 </div>
-                <app-list-user></app-list-user>
+                <form action="" method="post" class="form-horizontal">
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <div class="input-group pt-2 pr-2 pl-2">
+                                <input type="text" id="search" name="search" class="form-control"
+                                    placeholder="Search" autocomplete="off">
+                                <span class="input-group-append">
+                                    <button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="table-scroll">
+                    <app-list-user [userList]="userList"></app-list-user>
+                </div>
             </div>
         </div>
     </div>
