@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  selector: 'app-create-user',
+  templateUrl: './create-user.component.html',
+  styleUrls: ['./create-user.component.scss']
 })
-export class CreateComponent implements OnInit {
+export class CreateUserComponent implements OnInit {
 
   public userForm = new FormGroup({
     firstName: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -22,7 +22,7 @@ export class CreateComponent implements OnInit {
 
   onSubmit() {
     const loginReq = this.userForm.value;
-    
+
   }
 
   resetForm() {
