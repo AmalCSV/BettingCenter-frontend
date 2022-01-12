@@ -11,4 +11,8 @@ export class AuthService {
   login(loginReq){
     return this.http.post('url', loginReq);
   }
+
+  testGetApi() {
+    return this.http.get('https://jsonplaceholder.typicode.com/comments');
+  }
 }

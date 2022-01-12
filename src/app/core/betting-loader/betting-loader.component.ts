@@ -13,10 +13,10 @@ export class BettingLoaderComponent implements OnInit {
   constructor(private loaderService: LoaderService) { 
 
     this.loaderService.isLoading.subscribe((v) => {
-      console.log(v);
+      console.log(v, "BettingLoaderComponent");
       this.loading = v;
     });
-    
+
   }
 
   ngOnInit(): void {
