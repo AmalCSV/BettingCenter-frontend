@@ -19,16 +19,18 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit() {
-    const loginReq = this.loginForm.value;
-    this.authService.login(loginReq).subscribe((res: any) => {
-      if (res.success) {
-        // Navigate to Dashboard
-      } else {
-        // Handel the API error
-      }
-    }, error => {
-      // Handel the server error
-    });
+    // const loginReq = this.loginForm.value;
+    // this.authService.login(loginReq).subscribe((res: any) => {
+    //   if (res.success) {
+    //     // Navigate to Dashboard
+    //   } else {
+    //     // Handel the API error
+    //   }
+    // }, error => {
+    //   // Handel the server error
+    // });
+
+    
   }
 
   get userName() { return this.loginForm.get('userName'); }
