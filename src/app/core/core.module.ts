@@ -1,14 +1,27 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ErrorService } from './error.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { BettingLoaderComponent } from './betting-loader/betting-loader.component';
+import { LoaderInterceptorService } from './loader-interceptor.service';
+import { LoaderService } from './loader.service';
 
 @NgModule({
   declarations: [
-    
+    BettingLoaderComponent
   ],
   imports: [
     CommonModule
   ],
-  providers: [ErrorService]
+  exports: [
+    BettingLoaderComponent
+  ],
+  providers: [
+    LoaderService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptorService,
+      multi: true
+    },
+  ]
 })
 export class CoreModule { }

@@ -7,6 +7,7 @@ import { AuthService } from './auth.service';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CoreModule } from '../core/core.module';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    CoreModule
   ],
   providers: [
     AuthService

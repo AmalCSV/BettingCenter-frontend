@@ -42,8 +42,6 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpConfigInterceptorService } from './core/http-config-interceptor.service';
 
 @NgModule({
   imports: [
@@ -74,11 +72,6 @@ import { HttpConfigInterceptorService } from './core/http-config-interceptor.ser
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
-    },
-    { 
-      provide: HTTP_INTERCEPTORS, 
-      useClass: HttpConfigInterceptorService, 
-      multi: true 
     },
     IconSetService
   ],

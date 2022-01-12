@@ -29,6 +29,16 @@ export class SignInComponent implements OnInit {
     }, error => {
       // Handel the server error
     });
+
+    /**
+     *  Sample API call to 
+     *  Test Loader screen
+     * */ 
+    // this.authService.testGetApi().subscribe(res => {
+    //   console.log(res);
+    // }, error => {
+    //   console.log(error);
+    // })
   }
 
   get userName() { return this.loginForm.get('userName'); }
