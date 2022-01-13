@@ -1,0 +1,94 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Create</strong> Betting Center
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="createCenter" class="form-horizontal" autocomplete="nope">
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label" for="hf-name">Name</label>
+                            <div class="col-md-9">
+                                <input type="text" id="hf-name" name="hf-name" class="form-control"
+                                    formControlName="name"
+                                    [ngClass]="name.invalid && (name.dirty || name.touched) ? 'is-invalid' : ''"
+                                    placeholder="Enter name.." autocomplete="nope">
+                                <div class="invalid-feedback">
+                                    Name should be text
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label" for="hf-name">Address</label>
+                            <div class="col-md-9">
+                                <textarea  id="hf-address" name="hf-address" class="form-control"
+                                    formControlName="address" rows="3"
+                                    [ngClass]="address.invalid && (address.dirty || address.touched) ? 'is-invalid' : ''"
+                                    placeholder="Enter address.." autocomplete="nope"></textarea>
+                                <div class="invalid-feedback">
+                                    Should include a proper address
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label" for="hf-person">Responsible Person</label>
+                            <div class="col-md-9">
+                                <input type="text" id="hf-person" name="hf-person" class="form-control"
+                                    formControlName="responsiblePerson"
+                                    [ngClass]="responsiblePerson.invalid && (responsiblePerson.dirty || responsiblePerson.touched) ? 'is-invalid' : ''"
+                                    placeholder="Responsible person.." autocomplete="nope">
+                                <div class="invalid-feedback">
+                                    Should include person name
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label" for="hf-phone">Contact No</label>
+                            <div class="col-md-9">
+                                <input type="number" id="hf-phone" name="hf-phone" class="form-control"
+                                    formControlName="contactNumber"
+                                    [ngClass]="contactNumber.invalid && (contactNumber.dirty || contactNumber.touched) ? 'is-invalid' : ''"
+                                    placeholder="Enter Contact NO.." autocomplete="nope">
+                                <div class="invalid-feedback">
+                                    Should include valied contact number
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <button [disabled]="createCenter.invalid" type="submit" class="btn btn-sm btn-primary"
+                        (click)="onSubmit()"><i class="fa fa-dot-circle-o"></i>
+                        Submit</button>
+                    <button type="button" class="btn btn-sm btn-danger" (click)="resetForm()"><i class="fa fa-ban"></i>
+                        Reset</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Center</strong> List
+                </div>
+                <form action="" method="post" class="form-horizontal">
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <div class="input-group pt-2 pr-2 pl-2">
+                                <input type="text" id="search" name="search" class="form-control" placeholder="Search"
+                                    autocomplete="off">
+                                <span class="input-group-append">
+                                    <button type="button" class="btn btn-primary"><i class="fa fa-search"></i>
+                                        Search</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="table-scroll">
+                    <!-- <app-list-user [userList]="userList"></app-list-user> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

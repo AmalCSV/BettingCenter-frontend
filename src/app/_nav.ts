@@ -17,7 +17,19 @@ export const navItems: INavData[] = [
   {
     name: 'Betting',
     url: '/betting/all',
-    icon: 'cil-money'
+    icon: 'cil-money',
+    children: [
+      {
+        name: 'Create Center',
+        url: '/betting/create-center',
+        icon: 'cil-pen-nib'
+      },
+      {
+        name: 'List Centers',
+        url: '/betting/list-centers',
+        icon: 'cil-list-rich'
+      },
+    ]
   },
   {
     name: 'User',
