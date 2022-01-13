@@ -8,6 +8,9 @@ import { BettingService } from './betting.service';
 import { SharedModule } from '../shared/shared.module';
 import { CreateBetComponent } from './create-bet/create-bet.component';
 import { BettingSuggestionComponent } from './betting-suggestion/betting-suggestion.component';
+import { CreateBcenterComponent } from './create-bcenter/create-bcenter.component';
+import { ListBcenterComponent } from './list-bcenter/list-bcenter.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,12 +18,15 @@ import { BettingSuggestionComponent } from './betting-suggestion/betting-suggest
     BettingComponent,
     ListComponent,
     CreateBetComponent,
-    BettingSuggestionComponent
+    BettingSuggestionComponent,
+    CreateBcenterComponent,
+    ListBcenterComponent
   ],
   imports: [
     CommonModule,
     BettingRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ],
   providers: [
     BettingService
