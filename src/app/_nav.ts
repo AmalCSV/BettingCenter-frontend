@@ -29,6 +29,11 @@ export const navItems: INavData[] = [
         url: '/betting/list-centers',
         icon: 'cil-list-rich'
       },
+      {
+        name: 'Client Bettings',
+        url: '/betting/create-bet',
+        icon: 'cil-smile-plus'
+      },
     ]
   },
   {
