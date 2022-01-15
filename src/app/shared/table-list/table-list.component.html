@@ -1,0 +1,16 @@
+<table class="table table-responsive-sm table-hover table-outline mb-5">
+    <thead class="thead-light">
+        <tr>
+            <th *ngFor="let column of columnList;">{{column}}</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let row of rowData;">
+            <td *ngFor="let col of columnList;let i = index;">
+                <i *ngIf="row[i].isIcon" class={{row[i].text}}></i>
+                <span *ngIf="!row[i].isIcon">{{row[i].text}}</span>
+            </td>
+        </tr>
+    </tbody>
+</table>

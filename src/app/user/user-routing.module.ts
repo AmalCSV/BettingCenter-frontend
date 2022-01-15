@@ -27,7 +27,7 @@ const routes: Routes = [
         path: 'list',
         component: ListUserComponent,
         data: {
-          title: 'Create'
+          title: 'List'
         }
       }
     ]

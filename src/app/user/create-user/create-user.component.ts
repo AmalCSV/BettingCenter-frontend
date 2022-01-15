@@ -15,21 +15,15 @@ export class CreateUserComponent implements OnInit {
     password: new FormControl('', [Validators.required, Validators.minLength(8)])
   });
 
-  public userList = [
-    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"},
-    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"},
-    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"},
-    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"},
-    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"},
-    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"},
-    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"},
-    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"},
-    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"},
-    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"},
-    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"},
-    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"},
-    {firstName: "kasun" , lastName: "Abaywardana" , userName: "kasun12ug"}
-  ]
+  public columnList = [
+    "First Name", "Last Name", "User Name", "Action"
+  ];
+
+  public rowData = [
+    [{ text: 'Kasun' }, { text: 'Abaywardana' },
+    { text: 'kasun12' }, { text: 'fa fa-trash', isIcon: true }],
+    
+  ];
 
   constructor() { }
 
