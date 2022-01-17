@@ -88,98 +88,60 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="card">
-                                    <div class="card-body">
+                                <div class="card" formArrayName="horses"
+                                    *ngFor="let horse of createBet.get('horses')['controls']; let i = index;">
+                                    <div class="card-body" [formGroupName]="i">
                                         <div class="form-group row">
-                                            <label class="col-md-3 col-form-label" for="hf-ccode">Hourse Code</label>
+                                            <label class="col-md-3 col-form-label" for="hf-hcode">Horse Code</label>
                                             <div class="col-md-9">
-                                                <input type="text" id="hf-ccode" name="hf-ccode" class="form-control"
-                                                    formControlName="customerCode"
-                                                    [ngClass]="customerCode.invalid && (customerCode.dirty || customerCode.touched) ? 'is-invalid' : ''"
-                                                    placeholder="Enter hourse code.." autocomplete="nope">
+                                                <input type="text" id="hf-hcode" name="hf-hcode" class="form-control"
+                                                    formControlName="horseCode"
+                                                    [ngClass]="createBet.controls.horses.controls[i].controls.horseCode.invalid && 
+                                                    (createBet.controls.horses.controls[i].controls.horseCode.dirty || 
+                                                    createBet.controls.horses.controls[i].controls.horseCode.touched) ? 'is-invalid' : ''"
+                                                    placeholder="Enter horse code.." autocomplete="nope">
                                                 <div class="invalid-feedback">
-                                                    Customer code should not be empty
+                                                    Horse code required
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-md-3 col-form-label" for="hf-ccode">Race Code</label>
                                             <div class="col-md-9">
-                                                <input type="text" id="hf-ccode" name="hf-ccode" class="form-control"
-                                                    formControlName="customerCode"
-                                                    [ngClass]="customerCode.invalid && (customerCode.dirty || customerCode.touched) ? 'is-invalid' : ''"
+                                                <input type="text" id="hf-rcode" name="hf-rcode" class="form-control"
+                                                    formControlName="raceCode"
+                                                    [ngClass]="createBet.controls.horses.controls[i].controls.raceCode.invalid && 
+                                                    (createBet.controls.horses.controls[i].controls.raceCode.dirty || 
+                                                    createBet.controls.horses.controls[i].controls.raceCode.touched) ? 'is-invalid' : ''"
                                                     placeholder="Enter race code.." autocomplete="nope">
                                                 <div class="invalid-feedback">
-                                                    Customer code should not be empty
+                                                    Race code should not be empty
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-md-3 col-form-label" for="hf-bcenteer">Front/Back</label>
+                                            <label class="col-md-3 col-form-label" for="hf-side">Front/Back</label>
                                             <div class="col-md-9">
-                                                <select formControlName="centerId"
-                                                    [ngClass]="centerId.invalid && (centerId.dirty || centerId.touched) ? 'is-invalid' : ''"
+                                                <select formControlName="side"
+                                                    [ngClass]="createBet.controls.horses.controls[i].controls.side.invalid && 
+                                                    (createBet.controls.horses.controls[i].controls.side.dirty || 
+                                                    createBet.controls.horses.controls[i].controls.side.touched) ? 'is-invalid' : ''"
                                                     placeholder="Select a betting center.." class="form-control"
-                                                    id="hf-bcenteer" name="hf-bcenteer">
+                                                    id="hf-side" name="hf-side">
                                                     <option>Front</option>
                                                     <option>Back</option>
                                                 </select>
                                                 <div class="invalid-feedback">
-                                                    Please select the correct center
+                                                    Please select the correct option
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="card-footer">
-                                        <i class="fa fa-plus"></i>
-                                    </div> -->
-                                </div>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="form-group row">
-                                            <label class="col-md-3 col-form-label" for="hf-ccode">Hourse Code</label>
-                                            <div class="col-md-9">
-                                                <input type="text" id="hf-ccode" name="hf-ccode" class="form-control"
-                                                    formControlName="customerCode"
-                                                    [ngClass]="customerCode.invalid && (customerCode.dirty || customerCode.touched) ? 'is-invalid' : ''"
-                                                    placeholder="Enter hourse code.." autocomplete="nope">
-                                                <div class="invalid-feedback">
-                                                    Customer code should not be empty
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3 col-form-label" for="hf-ccode">Race Code</label>
-                                            <div class="col-md-9">
-                                                <input type="text" id="hf-ccode" name="hf-ccode" class="form-control"
-                                                    formControlName="customerCode"
-                                                    [ngClass]="customerCode.invalid && (customerCode.dirty || customerCode.touched) ? 'is-invalid' : ''"
-                                                    placeholder="Enter race code.." autocomplete="nope">
-                                                <div class="invalid-feedback">
-                                                    Customer code should not be empty
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-md-3 col-form-label" for="hf-bcenteer">Front/Back</label>
-                                            <div class="col-md-9">
-                                                <select formControlName="centerId"
-                                                    [ngClass]="centerId.invalid && (centerId.dirty || centerId.touched) ? 'is-invalid' : ''"
-                                                    placeholder="Select a betting center.." class="form-control"
-                                                    id="hf-bcenteer" name="hf-bcenteer">
-                                                    <option>Front</option>
-                                                    <option>Back</option>
-                                                </select>
-                                                <div class="invalid-feedback">
-                                                    Please select the correct center
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <i class="fa fa-plus"></i>
+                                    <div class="card-footer" *ngIf="createBet.controls.horses.controls.length - 1 === i">
+                                        <i class="fa fa-plus" (click)="addHorse(i)"></i>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </form>
