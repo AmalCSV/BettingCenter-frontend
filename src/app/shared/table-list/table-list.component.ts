@@ -15,4 +15,8 @@ export class TableListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  expandOption(index) {
+
+  }
+
 }

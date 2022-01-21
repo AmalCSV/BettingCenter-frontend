@@ -5,7 +5,7 @@ import { BettingComponent } from './betting.component';
 import { CreateBcenterComponent } from './create-bcenter/create-bcenter.component';
 import { CreateBetComponent } from './create-bet/create-bet.component';
 import { ListBcenterComponent } from './list-bcenter/list-bcenter.component';
-import { ListComponent } from './list/list.component';
+import { ListBetComponent } from './list-bet/list-bet.component';
 
 const routes: Routes = [
   {
@@ -21,7 +21,7 @@ const routes: Routes = [
       },
       {
         path: 'all',
-        component: ListComponent,
+        component: ListBetComponent,
         data: {
           title: 'Betting List'
         }
