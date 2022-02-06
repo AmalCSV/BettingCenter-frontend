@@ -23,7 +23,7 @@ export class SignInComponent implements OnInit {
     const loginReq = this.loginForm.value;
     this.authService.login(loginReq).subscribe((res: any) => {
       if (res.success) {
-        this.router.navigate([''])
+        this.router.navigate(['dashboard'])
         // Navigate to Dashboard
       } else {
         // Handel the API error
