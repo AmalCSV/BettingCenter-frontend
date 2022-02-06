@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-sign-in',
@@ -13,7 +14,7 @@ export class SignInComponent implements OnInit {
     password: new FormControl('', [Validators.required,Validators.minLength(8)])
   });
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService , private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -22,6 +23,7 @@ export class SignInComponent implements OnInit {
     const loginReq = this.loginForm.value;
     this.authService.login(loginReq).subscribe((res: any) => {
       if (res.success) {
+        this.router.navigate(['dashboard'])
         // Navigate to Dashboard
       } else {
         // Handel the API error
