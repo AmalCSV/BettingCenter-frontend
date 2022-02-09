@@ -8,22 +8,22 @@
     <tbody>
         <ng-container *ngFor="let row of rowData;let j = index;">
             <tr>
-                <td *ngFor="let col of columnList;let i = index;">
-                    <i *ngIf="row[i].isIcon" class={{row[i].text}}></i>
-                    <span *ngIf="!row[i].isIcon">{{row[i].text}}</span>
-                    <span class="float-right pr-2" *ngIf="row[i].expand" (click)="expandOption(j)">
+                <td *ngFor="let col of row.keyList;let i = index;">
+                    <i  *ngIf="row.deleteIndex === i" class="fa fa-trash"></i>
+                    <span >{{row[col]}}</span>
+                    <!-- <span class="float-right pr-2" *ngIf="row[i].expand" (click)="expandOption(j)">
                         <i class="icon-arrow-down"></i>
-                    </span>
+                    </span> -->
                 </td>
             </tr>
-            <tr>
+            <!-- <tr>
                 <td [attr.colspan]="columnList.length" class="table-secondary">
                     <div class="row" *ngFor="let adata of rowData.additionalData;">
                         <div class="col-md-5">{{adata.key}}</div>
                         <div class="col-md-7">{{adata.value}}</div>
                     </div>
                 </td>
-            </tr>
+            </tr> -->
         </ng-container>
     </tbody>
 </table>

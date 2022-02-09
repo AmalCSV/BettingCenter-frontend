@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from '../user.model';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-create-user',
@@ -7,6 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./create-user.component.scss']
 })
 export class CreateUserComponent implements OnInit {
+  public userList: Array<User>;
 
   public userForm = new FormGroup({
     firstName: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -25,18 +28,49 @@ export class CreateUserComponent implements OnInit {
     
   ];
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.getUserList();
   }
 
   onSubmit() {
-    const loginReq = this.userForm.value;
+    const userForm = this.userForm.valid;
+    if (userForm) {
+      this.createUser();
+    } else {
 
+    }
   }
 
   resetForm() {
     this.userForm.reset();
+  }
+
+  getUserList() {
+    this.userService.getUserList().subscribe((res: any) => {
+      if (res.success) {
+        this.userList = User.list(res.data);
+        console.log(this.userList);
+      } else {
+        console.log("Get user list error", JSON.stringify(res.data));
+      }
+    }, err => {
+      console.log("Get user list error", JSON.stringify(err));
+    })
+  }
+
+  createUser() {
+    const userData = this.userForm.value;
+    this.userService.createUser(new User(userData)).subscribe((res: any) => {
+      if(res.success) {
+        this.getUserList();
+      } else {
+        console.log("Create user error", JSON.stringify(res.data));
+      }
+    }, err => {
+      console.log("Create user error", JSON.stringify(err));
+    });
   }
 
   get firstName() { return this.userForm.get('firstName'); }
