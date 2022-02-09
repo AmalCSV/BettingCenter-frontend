@@ -8,7 +8,8 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-
+  public loginError: string;
+  
   public loginForm = new FormGroup({
     userName: new FormControl('', [Validators.required,Validators.minLength(5)]),
     password: new FormControl('', [Validators.required,Validators.minLength(8)])
@@ -23,8 +24,8 @@ export class SignInComponent implements OnInit {
     const loginReq = this.loginForm.value;
     this.authService.login(loginReq).subscribe((res: any) => {
       if (res.success) {
+        sessionStorage.setItem('authData', JSON.stringify(res.data))
         this.router.navigate(['dashboard'])
-        // Navigate to Dashboard
       } else {
         // Handel the API error
       }
