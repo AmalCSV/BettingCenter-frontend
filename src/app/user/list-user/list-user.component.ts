@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { User } from '../user.model';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-list-user',
@@ -7,7 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ListUserComponent implements OnInit {
 
-  @Input() userList;
+  public userList: Array<User>;
 
   public columnList = [
     "First Name", "Last Name", "User Name", "Action"
@@ -19,9 +21,23 @@ export class ListUserComponent implements OnInit {
     
   ];
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {;
+    this.getUserList()
+  }
+
+  getUserList() {
+    this.userService.getUserList().subscribe((res: any) => {
+      if (res.success) {
+        this.userList = User.list(res.data);
+        console.log(this.userList);
+      } else {
+        console.log("Get user list error", JSON.stringify(res.data));
+      }
+    }, err => {
+      console.log("Get user list error", JSON.stringify(err));
+    })
   }
 
 }

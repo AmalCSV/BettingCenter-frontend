@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  baseURL: "http://localhost/BettingCenter-backend"
+  baseURL: "http://bett.btg.com:80"
 };
