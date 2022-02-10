@@ -9,7 +9,10 @@
         <ng-container *ngFor="let row of rowData;let j = index;">
             <tr>
                 <td *ngFor="let col of row.keyList;let i = index;">
-                    <i  *ngIf="row.deleteIndex === i" class="fa fa-trash" (click)="delete(row)"></i>
+                    <button type="button" *ngIf="row.deleteIndex === i" (click)="delete(row)" class="btn btn-pinterest">
+                        <i   class="fa fa-trash" ></i> Delete
+                    </button>
+                    
                     <span >{{row[col]}}</span>
                     <!-- <span class="float-right pr-2" *ngIf="row[i].expand" (click)="expandOption(j)">
                         <i class="icon-arrow-down"></i>

@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationService } from './authentication.service';
 import { AuthGuardService } from './auth-guard.service';
 import { TableListComponent } from './table-list/table-list.component';
+import { AlertService } from './alert.service';
 
 
 
@@ -20,7 +21,8 @@ import { TableListComponent } from './table-list/table-list.component';
   ],
   providers: [
     AuthenticationService,
-    AuthGuardService
+    AuthGuardService,
+    AlertService
   ]
 })
 export class SharedModule { }

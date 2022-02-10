@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AlertService } from '../../shared/alert.service';
 import { User } from '../user.model';
 import { UserService } from '../user.service';
 
@@ -21,7 +22,7 @@ export class ListUserComponent implements OnInit {
     
   ];
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private alertService: AlertService) { }
 
   ngOnInit(): void {;
     this.getUserList()
@@ -54,7 +55,7 @@ export class ListUserComponent implements OnInit {
       console.log(res, "success");
       this.getUserList();
     }, err => {
-      console.log("Get user list error", JSON.stringify(err));
+      this.alertService.showErrorAlert("Some error occered in server");
     });
   }
 
