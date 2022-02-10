@@ -20,7 +20,7 @@
                     </div>
                 </form>
                 <div class="table-scroll">
-                    <app-table-list [columnList]="columnList" [rowData]="userList"></app-table-list>
+                    <app-table-list [columnList]="columnList" [rowData]="userList" (deleteItem)="deleteUser($event)"></app-table-list>
                 </div>
             </div>
         </div>

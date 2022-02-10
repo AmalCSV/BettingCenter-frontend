@@ -40,4 +40,22 @@ export class ListUserComponent implements OnInit {
     })
   }
 
+  deleteUser(event) {
+    const selectedUser = new User(event);
+    const deleteUser = {
+      id: selectedUser.id,
+      userName: selectedUser.userName,
+      firstName: selectedUser.firstName,
+      lastName: selectedUser.lastName,
+      isActive: false
+    }
+    deleteUser.isActive = false;
+    this.userService.updateUser(deleteUser).subscribe((res: any) => {
+      console.log(res, "success");
+      this.getUserList();
+    }, err => {
+      console.log("Get user list error", JSON.stringify(err));
+    });
+  }
+
 }
