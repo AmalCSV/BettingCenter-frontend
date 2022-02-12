@@ -22,7 +22,7 @@
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label" for="hf-name">Address</label>
                             <div class="col-md-9">
-                                <textarea  id="hf-address" name="hf-address" class="form-control"
+                                <textarea id="hf-address" name="hf-address" class="form-control"
                                     formControlName="address" rows="3"
                                     [ngClass]="address.invalid && (address.dirty || address.touched) ? 'is-invalid' : ''"
                                     placeholder="Enter address.." autocomplete="nope"></textarea>
@@ -35,8 +35,8 @@
                             <label class="col-md-3 col-form-label" for="hf-person">Responsible Person</label>
                             <div class="col-md-9">
                                 <input type="text" id="hf-person" name="hf-person" class="form-control"
-                                    formControlName="responsiblePerson"
-                                    [ngClass]="responsiblePerson.invalid && (responsiblePerson.dirty || responsiblePerson.touched) ? 'is-invalid' : ''"
+                                    formControlName="contactPerson"
+                                    [ngClass]="contactPerson.invalid && (contactPerson.dirty || contactPerson.touched) ? 'is-invalid' : ''"
                                     placeholder="Responsible person.." autocomplete="nope">
                                 <div class="invalid-feedback">
                                     Should include person name
@@ -47,8 +47,8 @@
                             <label class="col-md-3 col-form-label" for="hf-phone">Contact No</label>
                             <div class="col-md-9">
                                 <input type="number" id="hf-phone" name="hf-phone" class="form-control"
-                                    formControlName="contactNumber"
-                                    [ngClass]="contactNumber.invalid && (contactNumber.dirty || contactNumber.touched) ? 'is-invalid' : ''"
+                                    formControlName="phone"
+                                    [ngClass]="phone.invalid && (phone.dirty || phone.touched) ? 'is-invalid' : ''"
                                     placeholder="Enter Contact NO.." autocomplete="nope">
                                 <div class="invalid-feedback">
                                     Should include valied contact number
@@ -71,14 +71,15 @@
                 <div class="card-header">
                     <strong>Center</strong> List
                 </div>
-                <form action="" method="post" class="form-horizontal">
+                <form [formGroup]="searchForm" method="post" class="form-horizontal" autocomplete="off">
                     <div class="form-group row">
                         <div class="col-md-12">
                             <div class="input-group pt-2 pr-2 pl-2">
-                                <input type="text" id="search" name="search" class="form-control" placeholder="Search"
-                                    autocomplete="off">
+                                <input type="text" id="search" name="search" formControlName="searchText"
+                                    class="form-control" placeholder="Search" autocomplete="off" (keyup)="reFill()">
                                 <span class="input-group-append">
-                                    <button type="button" class="btn btn-primary"><i class="fa fa-search"></i>
+                                    <button type="button" class="btn btn-primary" (click)="search()"><i
+                                            class="fa fa-search"></i>
                                         Search</button>
                                 </span>
                             </div>
@@ -86,7 +87,8 @@
                     </div>
                 </form>
                 <div class="table-scroll">
-                    <app-table-list [columnList]="columnList" [rowData]="rowData"></app-table-list>
+                    <app-table-list [columnList]="columnList" [rowData]="displayCenterList"
+                        (updateItem)="updateCenter($event)"></app-table-list>
                 </div>
             </div>
         </div>

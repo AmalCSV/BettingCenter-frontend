@@ -21,7 +21,7 @@
                     </div>
                 </form>
                 <div class="table-scroll">
-                    <app-table-list [columnList]="columnList" [rowData]="displayCenterList"></app-table-list>
+                    <app-table-list [columnList]="columnList" [rowData]="displayCenterList" (updateItem)="updateCenter($event)"></app-table-list>
                 </div>
             </div>
         </div>

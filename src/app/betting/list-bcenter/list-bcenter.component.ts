@@ -40,7 +40,7 @@ export class ListBcenterComponent implements OnInit {
     })
   }
 
-  updateCenter() {
+  updateCenter(event) {
    const update = {};
     this.bettingService.updateCenter(update).subscribe((res: any) => {
       console.log(res, "success");
