@@ -5,4 +5,5 @@ export class API_END_POINTS {
      public static GET_USERS = environment.baseURL + '/users/read';
      public static CREATE_USERS = environment.baseURL + '/users/create';
      public static UPDATE_USERS = environment.baseURL + '/users/update';
+     public static SEARCH_USERS = environment.baseURL + '/users/search?id=';
 }
