@@ -11,6 +11,7 @@ export class TableListComponent implements OnInit {
   @Input() columnList: Array<any>;
   @Input() rowData: Array<any>;
   @Output() deleteItem = new EventEmitter<any>();
+  @Output() updateItem = new EventEmitter<any>();
 
   constructor() { }
 
@@ -23,6 +24,10 @@ export class TableListComponent implements OnInit {
 
   delete(item) {
     this.deleteItem.emit(item);
+  }
+
+  update(item) {
+    this.updateItem.emit(item);
   }
 
 }

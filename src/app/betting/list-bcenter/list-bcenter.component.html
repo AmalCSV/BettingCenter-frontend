@@ -5,14 +5,15 @@
                 <div class="card-header">
                     <strong>Center</strong> List
                 </div>
-                <form action="" method="post" class="form-horizontal">
+                <form [formGroup]="searchForm" method="post" class="form-horizontal" autocomplete="off">
                     <div class="form-group row">
                         <div class="col-md-12">
                             <div class="input-group pt-2 pr-2 pl-2">
-                                <input type="text" id="search" name="search" class="form-control" placeholder="Search"
-                                    autocomplete="off">
+                                <input type="text" id="search" name="search" formControlName="searchText"
+                                    class="form-control" placeholder="Search" autocomplete="off" (keyup)="reFill()">
                                 <span class="input-group-append">
-                                    <button type="button" class="btn btn-primary"><i class="fa fa-search"></i>
+                                    <button type="button" class="btn btn-primary" (click)="search()"><i
+                                            class="fa fa-search"></i>
                                         Search</button>
                                 </span>
                             </div>
@@ -20,7 +21,7 @@
                     </div>
                 </form>
                 <div class="table-scroll">
-                    <app-table-list [columnList]="columnList" [rowData]="rowData"></app-table-list>
+                    <app-table-list [columnList]="columnList" [rowData]="displayCenterList" (updateItem)="updateCenter($event)"></app-table-list>
                 </div>
             </div>
         </div>
