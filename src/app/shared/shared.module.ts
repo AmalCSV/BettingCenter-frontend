@@ -4,7 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationService } from './authentication.service';
 import { AuthGuardService } from './auth-guard.service';
 import { TableListComponent } from './table-list/table-list.component';
-
+import { AlertService } from './alert.service';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 @NgModule({
@@ -13,14 +14,16 @@ import { TableListComponent } from './table-list/table-list.component';
   ],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    SweetAlert2Module.forRoot()
   ],
   exports: [
     TableListComponent
   ],
   providers: [
     AuthenticationService,
-    AuthGuardService
+    AuthGuardService,
+    AlertService
   ]
 })
 export class SharedModule { }

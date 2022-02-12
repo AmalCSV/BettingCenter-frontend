@@ -11,7 +11,6 @@ export class AuthenticationService {
   }
 
   public isAuthenticated(): boolean {
-    debugger
     const authData: any = JSON.parse(sessionStorage.getItem('authData'));
     const status = authData ? true : false;
     return status

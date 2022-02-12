@@ -20,9 +20,14 @@
                     </div>
                 </form>
                 <div class="table-scroll">
-                    <app-table-list [columnList]="columnList" [rowData]="userList"></app-table-list>
+                    <app-table-list [columnList]="columnList" [rowData]="userList" (deleteItem)="deleteUser($event)"></app-table-list>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<button [swal]="deleteSwal" (confirm)="deleteFile(file)">
+    Delete 
+  </button>
+  
+  <swal #deleteSwal title="Delete" etc></swal>

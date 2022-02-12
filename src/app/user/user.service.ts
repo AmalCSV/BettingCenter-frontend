@@ -17,4 +17,8 @@ export class UserService {
   createUser(user: User){
     return this.http.post(API_END_POINTS.CREATE_USERS, user);
   }
+
+  updateUser(user: any) {
+    return this.http.post(API_END_POINTS.UPDATE_USERS, user);
+  }
 }

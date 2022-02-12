@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AlertService } from '../../shared/alert.service';
 import { User } from '../user.model';
 import { UserService } from '../user.service';
 
@@ -21,7 +22,7 @@ export class ListUserComponent implements OnInit {
     
   ];
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private alertService: AlertService) { }
 
   ngOnInit(): void {;
     this.getUserList()
@@ -38,6 +39,24 @@ export class ListUserComponent implements OnInit {
     }, err => {
       console.log("Get user list error", JSON.stringify(err));
     })
+  }
+
+  deleteUser(event) {
+    const selectedUser = new User(event);
+    const deleteUser = {
+      id: selectedUser.id,
+      userName: selectedUser.userName,
+      firstName: selectedUser.firstName,
+      lastName: selectedUser.lastName,
+      isActive: false
+    }
+    deleteUser.isActive = false;
+    this.userService.updateUser(deleteUser).subscribe((res: any) => {
+      console.log(res, "success");
+      this.getUserList();
+    }, err => {
+      this.alertService.showErrorAlert("Some error occered in server");
+    });
   }
 
 }

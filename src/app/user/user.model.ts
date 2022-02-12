@@ -6,6 +6,7 @@ export class User {
   password?: string;
   keyList?: Array<string>;
   deleteIndex?: number;
+  isActive?: boolean;
 
   constructor(req: any){
     this.id = (req || {}).id;
@@ -15,6 +16,7 @@ export class User {
     this.password = (req || {}).password;
     this.keyList = ['firstName', 'lastName', 'userName', 'status'];
     this.deleteIndex = 3;
+    this.isActive = true;
   }
 
   static list(data: any): Array<User>{

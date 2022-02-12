@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { User } from '../../user/user.model';
 
 @Component({
   selector: 'app-table-list',
@@ -9,6 +10,7 @@ export class TableListComponent implements OnInit {
 
   @Input() columnList: Array<any>;
   @Input() rowData: Array<any>;
+  @Output() deleteItem = new EventEmitter<any>();
 
   constructor() { }
 
@@ -17,6 +19,10 @@ export class TableListComponent implements OnInit {
 
   expandOption(index) {
 
+  }
+
+  delete(item) {
+    this.deleteItem.emit(item);
   }
 
 }
