@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { AlertService } from '../../shared/alert.service';
 import { User } from '../user.model';
 import { UserService } from '../user.service';
@@ -11,16 +12,15 @@ import { UserService } from '../user.service';
 export class ListUserComponent implements OnInit {
 
   public userList: Array<User>;
+  public displayUserList: Array<User>;
 
   public columnList = [
     "First Name", "Last Name", "User Name", "Action"
   ];
 
-  public rowData = [
-    [{ text: 'Kasun' }, { text: 'Abaywardana' },
-    { text: 'kasun12' }, { text: 'fa fa-trash', isIcon: true }],
-    
-  ];
+  public searchForm = new FormGroup({
+    searchText: new FormControl('')
+  });
 
   constructor(private userService: UserService, private alertService: AlertService) { }
 
@@ -32,6 +32,7 @@ export class ListUserComponent implements OnInit {
     this.userService.getUserList().subscribe((res: any) => {
       if (res.success) {
         this.userList = User.list(res.data);
+        this.displayUserList = this.userList;
         console.log(this.userList);
       } else {
         console.log("Get user list error", JSON.stringify(res.data));
@@ -57,6 +58,48 @@ export class ListUserComponent implements OnInit {
     }, err => {
       this.alertService.showErrorAlert("Some error occered in server");
     });
+  }
+
+  search() {
+    const search = this.searchForm.value.searchText.toLocaleLowerCase();
+
+    const firstName = this.userList.filter(f => {
+      const term = f.firstName ? f.firstName.toLocaleLowerCase(): '';
+      if (term.includes(search)) {
+        return f;
+      }
+    });
+
+    const lastName = this.userList.filter(f => {
+      const term = f.lastName ? f.lastName.toLocaleLowerCase(): '';
+      if (term.includes(search)) {
+        return f;
+      }
+    });
+
+    const userName = this.userList.filter(f => {
+      const term = f.userName ? f.userName.toLocaleLowerCase(): '';
+      if (term.includes(search)) {
+        return f;
+      }
+    });
+
+    if (search === '') {
+      this.displayUserList = this.userList;
+    } else if (userName.length>0) {
+      this.displayUserList = firstName;
+    } else if (firstName.length > 0) {
+      this.displayUserList = lastName;
+    } else {
+      this.displayUserList = userName;
+    }
+  }
+
+  reFill() {
+    const search = this.searchForm.value.searchText.toLocaleLowerCase();
+    if (search === '') {
+     this.displayUserList = this.userList;
+    }
   }
 
 }
