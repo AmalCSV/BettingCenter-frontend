@@ -21,4 +21,8 @@ export class UserService {
   updateUser(user: any) {
     return this.http.post(API_END_POINTS.UPDATE_USERS, user);
   }
+
+  searchUser(id) {
+    return this.http.get(API_END_POINTS.SEARCH_USERS + id);
+  }
 }
