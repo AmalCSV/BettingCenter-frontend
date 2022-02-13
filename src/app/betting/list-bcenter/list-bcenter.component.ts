@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BettingService } from '../betting.service';
 import { Center } from '../betting.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-bcenter',
@@ -21,10 +22,10 @@ export class ListBcenterComponent implements OnInit {
     searchText: new FormControl('')
   });
 
-  constructor(private bettingService: BettingService) { }
+  constructor(private bettingService: BettingService, private router: Router) { }
 
-  ngOnInit(): void {;
-    this.getCenters()
+  ngOnInit(): void {
+    this.getCenters();
   }
 
   getCenters() {
@@ -41,26 +42,22 @@ export class ListBcenterComponent implements OnInit {
   }
 
   updateCenter(event) {
-   const update = {};
-    this.bettingService.updateCenter(update).subscribe((res: any) => {
-      console.log(res, "success");
-      this.getCenters();
-    }, err => {
-    });
+    sessionStorage.setItem('updateCenter', JSON.stringify(event));
+    this.router.navigate(['betting/create-center']);
   }
 
   search() {
     const search = this.searchForm.value.searchText.toLocaleLowerCase();
 
     const name = this.centerList.filter(f => {
-      const term = f.name ? f.name.toLocaleLowerCase(): '';
+      const term = f.name ? f.name.toLocaleLowerCase() : '';
       if (term.includes(search)) {
         return f;
       }
     });
 
     const person = this.centerList.filter(f => {
-      const term = f.contactPerson ? f.contactPerson.toLocaleLowerCase(): '';
+      const term = f.contactPerson ? f.contactPerson.toLocaleLowerCase() : '';
       if (term.includes(search)) {
         return f;
       }
@@ -68,7 +65,7 @@ export class ListBcenterComponent implements OnInit {
 
     if (search === '') {
       this.displayCenterList = this.centerList;
-    } else if (name.length>0) {
+    } else if (name.length > 0) {
       this.displayCenterList = name;
     } else {
       this.displayCenterList = person;
@@ -78,7 +75,7 @@ export class ListBcenterComponent implements OnInit {
   reFill() {
     const search = this.searchForm.value.searchText.toLocaleLowerCase();
     if (search === '') {
-     this.displayCenterList = this.centerList;
+      this.displayCenterList = this.centerList;
     }
   }
 
