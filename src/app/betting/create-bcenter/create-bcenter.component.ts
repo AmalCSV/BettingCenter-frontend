@@ -11,6 +11,7 @@ import { BettingService } from '../betting.service';
 export class CreateBcenterComponent implements OnInit {
   public centerList: Array<Center>;
   public displayCenterList: Array<Center>;
+  public updateObj: Center;
 
   public columnList = [
     "Name", "Address", "Responsible Person", "Contact NO", "Action"
@@ -31,6 +32,7 @@ export class CreateBcenterComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCenters();
+    this.fillPreviousData();
   }
 
   getCenters() {
@@ -46,13 +48,9 @@ export class CreateBcenterComponent implements OnInit {
     })
   }
 
-  updateCenter(event) {
-    const update = {};
-    this.bettingService.updateCenter(update).subscribe((res: any) => {
-      console.log(res, "success");
-      this.getCenters();
-    }, err => {
-    });
+  editCenter(event) {
+    this.createCenter.patchValue(event);
+    this.updateObj = event;
   }
 
   search() {
@@ -89,16 +87,47 @@ export class CreateBcenterComponent implements OnInit {
   }
 
   onSubmit() {
-    const center = this.createCenter.value;
-    this.bettingService.createCenter(center).subscribe(res => {
-      this.getCenters();
+    if (!this.updateObj) {
+      const center = this.createCenter.value;
+      this.bettingService.createCenter(center).subscribe(res => {
+        this.getCenters();
+        this.createCenter.reset();
+      }, err => {
+
+      });
+    } else {
+      this.updateCenter();
+    }
+  }
+
+  resetForm() {
+    this.createCenter.reset();
+    this.updateObj = null;
+  }
+
+  updateCenter() {
+    let updateFormData = new Center(this.createCenter.value);
+    updateFormData.id = this.updateObj.id;
+    this.bettingService.updateCenter(updateFormData).subscribe((res: any) => {
+      if (res && res.message) {
+        this.createCenter.reset();
+        this.getCenters();
+      } else {
+
+      }
     }, err => {
 
     });
   }
 
-  resetForm() {
-    this.createCenter.reset();
+  fillPreviousData() {
+    const previousData = sessionStorage.getItem('updateCenter');
+    if (previousData) {
+      const parseData = JSON.parse(previousData);
+      this.updateObj = parseData;
+      this.createCenter.patchValue(parseData);
+      sessionStorage.setItem('updateCenter', null);
+    }
   }
 
   get name() { return this.createCenter.get('name'); }
