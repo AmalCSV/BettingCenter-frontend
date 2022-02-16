@@ -10,10 +10,6 @@ export class BettingService {
 
   constructor(private http: HttpClient) { }
 
-  getCenterList(){
-    return this.http.get(API_END_POINTS.READ_CENTERS);
-  }
-
   createCenter(user: Center){
     return this.http.post(API_END_POINTS.CREATE_CENTERS, user);
   }

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { SharedApiService } from '../../shared/shared-api.service';
+import { Center } from '../betting.model';
+import { BettingService } from '../betting.service';
 
 @Component({
   selector: 'app-create-bet',
@@ -9,14 +12,16 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 export class CreateBetComponent implements OnInit {
   public horses: FormArray;
   public createBet: FormGroup;
+  public centerList: Array<Center>;
 
   public sideOption = ["Front", "Back"];
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private sharedApiService: SharedApiService) {
     this.initForm();
   }
 
   ngOnInit(): void {
+    this.getCenters();
   }
 
   onSubmit() {
@@ -56,6 +61,20 @@ export class CreateBetComponent implements OnInit {
   resetForm() {
 
   }
+
+  getCenters() {
+    this.sharedApiService.getCenterList().subscribe((res : any) => {
+      if (res.Success) {
+        this.centerList = Center.list(res.data);
+      } else {
+
+      }
+    }, err => {
+
+    });
+  }
+
+
 
   get customerCode() { return this.createBet.get('customerCode'); }
   get bettingDate() { return this.createBet.get('bettingDate'); }

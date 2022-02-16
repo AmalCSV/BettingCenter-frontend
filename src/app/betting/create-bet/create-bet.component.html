@@ -40,9 +40,7 @@
                                             [ngClass]="centerId.invalid && (centerId.dirty || centerId.touched) ? 'is-invalid' : ''"
                                             placeholder="Select a betting center.." class="form-control"
                                             id="hf-bcenteer" name="hf-bcenteer">
-                                            <option selected>Select a betting center..</option>
-                                            <option>Center 1</option>
-                                            <option>Center 2</option>
+                                            <option *ngFor="let option of centerList" [value]="option.id">{{option.name}}</option>
                                         </select>
                                         <div class="invalid-feedback">
                                             Please select the correct center

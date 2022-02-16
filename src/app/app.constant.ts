@@ -11,4 +11,6 @@ export class API_END_POINTS {
      public static SEARCH_CENTERS = environment.baseURL + '/betting-center/search?id=';
      public static UPDATE_CENTERS = environment.baseURL + '/betting-center/update';
      public static CREATE_CENTERS = environment.baseURL + '/betting-center/create';
+
+     public static READ_RACE = environment.baseURL + '/race/read';
 }

@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { BettingService } from '../betting.service';
 import { Center } from '../betting.model';
 import { Router } from '@angular/router';
+import { SharedApiService } from '../../shared/shared-api.service';
 
 @Component({
   selector: 'app-list-bcenter',
@@ -22,14 +23,14 @@ export class ListBcenterComponent implements OnInit {
     searchText: new FormControl('')
   });
 
-  constructor(private bettingService: BettingService, private router: Router) { }
+  constructor(private bettingService: BettingService, private router: Router, private sharedApiService: SharedApiService) { }
 
   ngOnInit(): void {
     this.getCenters();
   }
 
   getCenters() {
-    this.bettingService.getCenterList().subscribe((res: any) => {
+    this.sharedApiService.getCenterList().subscribe((res: any) => {
       if (res.Success) {
         this.centerList = Center.list(res.data);
         this.displayCenterList = this.centerList;
