@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { SharedApiService } from '../../shared/shared-api.service';
+import { Center } from '../betting.model';
+import { BettingService } from '../betting.service';
 
 @Component({
   selector: 'app-create-bet',
@@ -8,15 +11,18 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 })
 export class CreateBetComponent implements OnInit {
   public horses: FormArray;
+  public horseOptions: FormGroup;
   public createBet: FormGroup;
+  public centerList: Array<Center>;
 
   public sideOption = ["Front", "Back"];
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private sharedApiService: SharedApiService) {
     this.initForm();
   }
 
   ngOnInit(): void {
+    this.getCenters();
   }
 
   onSubmit() {
@@ -30,8 +36,15 @@ export class CreateBetComponent implements OnInit {
       centerId: this.formBuilder.control('Select a betting center..', [Validators.required]),
       bettingAmount: this.formBuilder.control('', [Validators.required]),
       option: this.formBuilder.control('Select a option..', [Validators.required]),
-      horses: this.formBuilder.array([this.betHorseForm()])
+      // horses: this.formBuilder.array([this.betHorseForm()])
     });
+
+    this.horseOptions = this.formBuilder.group({
+      horseCode: ['', [Validators.required]],
+      raceCode: ['', [Validators.required]],
+      amountTypeId: ['', [Validators.required]],
+      amount: ['', [Validators.required]]
+    })
 
   }
 
@@ -57,10 +70,29 @@ export class CreateBetComponent implements OnInit {
 
   }
 
+  getCenters() {
+    this.sharedApiService.getCenterList().subscribe((res : any) => {
+      if (res.Success) {
+        this.centerList = Center.list(res.data);
+      } else {
+
+      }
+    }, err => {
+
+    });
+  }
+
+
+
   get customerCode() { return this.createBet.get('customerCode'); }
   get bettingDate() { return this.createBet.get('bettingDate'); }
   get centerId() { return this.createBet.get('centerId'); }
   get bettingAmount() { return this.createBet.get('bettingAmount'); }
   get option() { return this.createBet.get('option'); }
+
+  get horseCode() { return this.horseOptions.get('horseCode'); }
+  get raceCode() { return this.horseOptions.get('raceCode'); }
+  get amountTypeId() { return this.horseOptions.get('amountTypeId'); }
+  get amount() { return this.horseOptions.get('amount'); }
 
 }

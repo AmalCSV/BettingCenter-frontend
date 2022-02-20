@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SharedApiService } from '../../shared/shared-api.service';
 import { Center } from '../betting.model';
 import { BettingService } from '../betting.service';
 
@@ -28,7 +29,8 @@ export class CreateBcenterComponent implements OnInit {
     phone: new FormControl('07', [Validators.required, Validators.minLength(9), Validators.maxLength(10)])
   });
 
-  constructor(private bettingService: BettingService) { }
+  constructor(private bettingService: BettingService, private sharedApiService: SharedApiService) { }
+
 
   ngOnInit(): void {
     this.getCenters();
@@ -36,7 +38,7 @@ export class CreateBcenterComponent implements OnInit {
   }
 
   getCenters() {
-    this.bettingService.getCenterList().subscribe((res: any) => {
+    this.sharedApiService.getCenterList().subscribe((res: any) => {
       if (res.Success) {
         this.centerList = Center.list(res.data);
         this.displayCenterList = this.centerList;
