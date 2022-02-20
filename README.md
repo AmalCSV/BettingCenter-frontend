@@ -1,8 +1,10 @@
-# Core UI
+# Using Core UI Template
 
 CoreUI is the fastest way to build a modern dashboard for any platforms, browser or device. A complete Dashboard UI Kit that allows you to quickly build eye-catching, high-quality, high-performance responsive applications.
-
+<div style="float:left;margin:0 70px 50px 0" markdown="1">
 [![Try the demo](https://coreui.io/angular/demo/free/2.11.1/assets/img/brand/logo.svg)](https://coreui.io/angular/demo/free/2.11.1/#/dashboard)
+</div>
+
 
 # How to run it locally
 1. Clone the [repository](https://github.com/AmalCSV/BettingCenter-frontend.git) to your local machine:
