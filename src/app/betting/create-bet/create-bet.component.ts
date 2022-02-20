@@ -1,5 +1,5 @@
 import { Betts } from './../betting.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { SharedApiService } from '../../shared/shared-api.service';
 import { Center, Horse, Amounts } from '../betting.model';
@@ -11,6 +11,8 @@ import { BettingService } from '../betting.service';
   styleUrls: ['./create-bet.component.scss']
 })
 export class CreateBetComponent implements OnInit {
+  @ViewChild('horseCode') horseCodeInput: ElementRef;
+
   public horses: FormArray;
   public horseOptions: FormGroup;
   public createBet: FormGroup;
@@ -35,9 +37,10 @@ export class CreateBetComponent implements OnInit {
   }
 
   initForm() {
+    const date = new Date().getFullYear()+'-'+new Date().getMonth()+'-'+ new Date().getDay();
     this.createBet = this.formBuilder.group({
       customerCode: this.formBuilder.control('', [Validators.required]),
-      bettingDate: this.formBuilder.control('', [Validators.required]),
+      bettingDate: this.formBuilder.control(date, [Validators.required]),
       centerId: this.formBuilder.control('Select a betting center..', [Validators.required]),
       bettingAmount: this.formBuilder.control('', [Validators.required]),
       option: this.formBuilder.control('Select a option..', [Validators.required]),
@@ -71,8 +74,16 @@ export class CreateBetComponent implements OnInit {
         horseCode: formData.horseCode,
         raceCode: formData.raceCode
       };
-      this.horseRaceList.push(new Horse(data));
-      this.resetForm(['horseCode', 'raceCode'], this.horseOptions)
+      const dublicate = this.horseRaceList.filter(f => {
+        if(f.horseCode == data.horseCode && f.raceCode == data.raceCode) {
+          return f;
+        }
+      });
+      if (dublicate.length === 0) {
+        this.horseRaceList.push(new Horse(data));
+      }
+      this.resetForm(['horseCode', 'raceCode'], this.horseOptions);
+      this.horseCodeInput.nativeElement.focus();
     }
   }
 
@@ -83,8 +94,26 @@ export class CreateBetComponent implements OnInit {
         amountTypeId: formData.amountTypeId,
         amount: formData.amount
       };
-      this.lineAmount.push(new Amounts(data));
-      this.resetForm(['amount', 'amountTypeId'], this.horseOptions)
+      const dublicate = this.lineAmount.filter(f => {
+        if(f.amountTypeId == data.amountTypeId) {
+          f.amount = data.amount;
+          return f;
+        }
+      });
+      if (dublicate.length === 0) {
+        this.lineAmount.push(new Amounts(data));
+      } else {
+        this.lineAmount = this.lineAmount.map(m => {
+          if(m.amountTypeId == data.amountTypeId) {
+            m.amount = data.amount;
+            return m;
+          } else {
+            return m;
+          }
+        });
+      }
+
+      this.resetForm(['amount'], this.horseOptions)
     }
   }
 

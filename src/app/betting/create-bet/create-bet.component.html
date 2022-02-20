@@ -23,7 +23,7 @@
                 <div class="form-group row">
                   <label class="col-md-3 col-form-label" for="hf-bdate">Betting Date</label>
                   <div class="col-md-9">
-                    <input class="form-control" id="hf-bdate" type="date" name="hf-bdate" formControlName="bettingDate"
+                    <input class="form-control" id="hf-bdate" placeholder="yyyy-mm-dd" type="date" name="hf-bdate" formControlName="bettingDate"
                       [ngClass]="bettingDate.invalid && (bettingDate.dirty || bettingDate.touched) ? 'is-invalid' : ''"
                       placeholder="Enter date.." autocomplete="nope">
                     <div class="invalid-feedback">
@@ -91,13 +91,13 @@
                   <tbody>
                     <tr *ngFor="let item of betts">
                       <td>
-                        <div class="btn-group pr-0" *ngFor="let horse of item.bettingHorse; let i = inex;">
+                        <div class="btn-group pr-1" *ngFor="let horse of item.bettingHorse; let i = inex;">
                           <span class="badge badge-sm bg-warning ms-auto">{{horse.horseCode}}</span>
                           <span class="badge badge-sm bg-success ms-auto">{{horse.raceCode}}</span>
                         </div>
                       </td>
                       <td>
-                        <div class="btn-group pr-0" *ngFor="let amount of item.amounts">
+                        <div class="btn-group pr-1" *ngFor="let amount of item.amounts">
                           <span class="badge badge-sm bg-warning ms-auto">{{amount.amountTypeId ? 'FRONT' :
                             'BACK'}}</span>
                           <span class="badge badge-sm bg-light ms-auto">{{amount.amount}}</span>
@@ -124,7 +124,7 @@
                       <label class="col-form-label" for="hf-hcode">Horse & Race Code</label>
                     </div>
                     <div class="col-md-4">
-                      <input type="text" id="hf-hcode" name="hf-hcode" class="form-control" formControlName="horseCode"
+                      <input type="text" id="hf-hcode" #horseCodeInput name="hf-hcode" class="form-control" formControlName="horseCode"
                         [ngClass]="horseCode.invalid && (horseCode.dirty || horseCode.touched) ? 'is-invalid' : ''"
                         placeholder="Horse code.." autocomplete="nope">
                       <div class="invalid-feedback">
@@ -191,7 +191,7 @@
                   </div>
                 </div>
                 <div class="col-md-5 pl-0">
-                  <div class="btn-group" *ngFor="let item of lineAmount">
+                  <div class="btn-group pr-1" *ngFor="let item of lineAmount">
                     <span class="badge badge-sm bg-warning ms-auto">{{item.amountTypeId ? 'FRONT' : 'BACK'}}</span>
                     <span class="badge badge-sm bg-light ms-auto">{{item.amount}}</span>
                   </div>
