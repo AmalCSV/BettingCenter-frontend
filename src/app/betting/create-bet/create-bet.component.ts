@@ -1,3 +1,4 @@
+import { Betts } from './../betting.model';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { SharedApiService } from '../../shared/shared-api.service';
@@ -17,6 +18,7 @@ export class CreateBetComponent implements OnInit {
   public centerList: Array<Center>;
   public horseRaceList: any = [];
   public lineAmount: any = [];
+  public betts: any = [];
 
   public sideOption = ["Front", "Back"];
 
@@ -76,7 +78,7 @@ export class CreateBetComponent implements OnInit {
 
   addAmounts() {
     const formData = this.horseOptions.value;
-    if (formData.amountTypeId && formData.amount) {
+    if (formData.amountTypeId && formData.amount && this.lineAmount.length < 2) {
       const data = {
         amountTypeId: formData.amountTypeId,
         amount: formData.amount
@@ -96,9 +98,23 @@ export class CreateBetComponent implements OnInit {
     }
   }
 
+  addToBettList() {
+    this.betts.push(new Betts({bettingHorse: this.horseRaceList, amounts: this.lineAmount}));
+    this.clearBets();
+  }
+
+  deleteBett(index) {
+    this.betts.splice(index,1)
+  }
+
   resetWindow() {
     this.resetForm([], this.horseOptions, true);
     this.resetForm([], this.createBet, true);
+  }
+
+  clearBets() {
+    this.horseRaceList = [];
+    this.lineAmount = [];
   }
 
   get customerCode() { return this.createBet.get('customerCode'); }

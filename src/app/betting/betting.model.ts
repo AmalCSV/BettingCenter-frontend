@@ -41,3 +41,13 @@ export class Amounts {
     this.amount = (obj || {}).amount;
   }
 }
+
+export class Betts {
+  bettingHorse: Array<Horse>;
+  amounts: Array<Amounts>
+
+  constructor(obj){
+    this.bettingHorse = (obj || {}).bettingHorse;
+    this.amounts = (obj || {}).amounts
+  }
+}
