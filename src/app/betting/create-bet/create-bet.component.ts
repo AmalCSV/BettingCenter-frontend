@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { SharedApiService } from '../../shared/shared-api.service';
-import { Center } from '../betting.model';
+import { Center, Horse, Amounts } from '../betting.model';
 import { BettingService } from '../betting.service';
 
 @Component({
@@ -13,9 +13,10 @@ export class CreateBetComponent implements OnInit {
   public horses: FormArray;
   public horseOptions: FormGroup;
   public createBet: FormGroup;
+
   public centerList: Array<Center>;
-  public horseRaceList: Array<{ horseCode: string, raceCode: string }>;
-  public lineAmount: Array<{amount: number, amountTypeId: number}>;
+  public horseRaceList: any = [];
+  public lineAmount: any = [];
 
   public sideOption = ["Front", "Back"];
 
@@ -38,37 +39,14 @@ export class CreateBetComponent implements OnInit {
       centerId: this.formBuilder.control('Select a betting center..', [Validators.required]),
       bettingAmount: this.formBuilder.control('', [Validators.required]),
       option: this.formBuilder.control('Select a option..', [Validators.required]),
-      // horses: this.formBuilder.array([this.betHorseForm()])
     });
 
     this.horseOptions = this.formBuilder.group({
-      horseCode: ['', [Validators.required]],
-      raceCode: ['', [Validators.required]],
-      amountTypeId: ['', [Validators.required]],
-      amount: ['', [Validators.required]]
+      horseCode: [''],
+      raceCode: [''],
+      amountTypeId: [1],
+      amount: []
     })
-
-  }
-
-  addHorse(i) {
-    if (this.createBet.controls.horses['controls'].length < 5) {
-      this.horses = this.createBet.get('horses') as FormArray;
-      this.horses.push(this.betHorseForm());
-    } else {
-      // Error alert
-    }
-
-  }
-
-  betHorseForm(): FormGroup {
-    return this.formBuilder.group({
-      horseCode: ['', [Validators.required]],
-      raceCode: ['', [Validators.required]],
-      side: ['', [Validators.required]],
-    })
-  }
-
-  resetForm() {
 
   }
 
@@ -85,7 +63,42 @@ export class CreateBetComponent implements OnInit {
   }
 
   addHorseRace() {
+    const formData = this.horseOptions.value;
+    if (formData.horseCode && formData.raceCode) {
+      const data = {
+        horseCode: formData.horseCode,
+        raceCode: formData.raceCode
+      };
+      this.horseRaceList.push(new Horse(data));
+      this.resetForm(['horseCode', 'raceCode'], this.horseOptions)
+    }
+  }
 
+  addAmounts() {
+    const formData = this.horseOptions.value;
+    if (formData.amountTypeId && formData.amount) {
+      const data = {
+        amountTypeId: formData.amountTypeId,
+        amount: formData.amount
+      };
+      this.lineAmount.push(new Amounts(data));
+      this.resetForm(['amount', 'amountTypeId'], this.horseOptions)
+    }
+  }
+
+  resetForm(fieldNames: Array<string>, formName: FormGroup, isAll?: boolean) {
+    if (!isAll) {
+      fieldNames.forEach(f => {
+        formName.controls[f].reset('')
+      });
+    } else {
+      formName.reset();
+    }
+  }
+
+  resetWindow() {
+    this.resetForm([], this.horseOptions, true);
+    this.resetForm([], this.createBet, true);
   }
 
   get customerCode() { return this.createBet.get('customerCode'); }

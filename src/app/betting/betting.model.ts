@@ -23,3 +23,21 @@ export class Center {
     return data ? data.map(m => { return new Center(m) }) : []
   }
 }
+
+export class Horse {
+  horseCode: string;
+  raceCode: string;
+  constructor(obj) {
+    this.horseCode = (obj || {}).horseCode;
+    this.raceCode = (obj || {}).raceCode;
+  }
+}
+
+export class Amounts {
+  amountTypeId: number;
+  amount: number;
+  constructor(obj) {
+    this.amountTypeId = (obj || {}).amountTypeId;
+    this.amount = (obj || {}).amount;
+  }
+}

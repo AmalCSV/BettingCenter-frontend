@@ -191,7 +191,7 @@
                       </div>
                     </div>
                     <div class="col-md-3">
-                      <input type="text" id="hf-rcode" name="hf-rcode" class="form-control" formControlName="raceCode"
+                      <input type="text" id="hf-rcode" name="hf-rcode" class="form-control" formControlName="raceCode" (keyup.enter)="addHorseRace()"
                         [ngClass]="horseCode.invalid &&
                                                 (horseCode.dirty ||
                                                 horseCode.touched) ? 'is-invalid' : ''" placeholder="Enter race code.."
@@ -201,7 +201,9 @@
                       </div>
                     </div>
                     <div class="col-md-2">
-                      <button class="btn btn-md btn-primary" (click)="addHorseRace()">Add ></button>
+                      <button class="btn btn-md btn-primary"
+                        [disabled]="!horseOptions.value.horseCode || !horseOptions.value.raceCode"
+                        (click)="addHorseRace()">Add ></button>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -221,51 +223,41 @@
                       </div>
                     </div>
                     <div class="col-md-4">
-                      <input type="text" id="hf-pamount" name="hf-pamount" class="form-control"
-                        formControlName="raceCode" [ngClass]="horseCode.invalid &&
-                                                (horseCode.dirty ||
-                                                horseCode.touched) ? 'is-invalid' : ''" placeholder="Enter amount.."
+                      <input type="number" id="hf-pamount" name="hf-pamount" class="form-control" (keyup.enter)="addAmounts()"
+                        formControlName="amount" [ngClass]="amount.invalid &&
+                                                (amount.dirty ||
+                                                amount.touched) ? 'is-invalid' : ''" placeholder="Enter amount.."
                         autocomplete="nope">
                       <div class="invalid-feedback">
                         Amount should not be empty
                       </div>
                     </div>
                     <div class="col-md-2">
-                      <button class="btn btn-md btn-primary">Add ></button>
+                      <button class="btn btn-md btn-primary"
+                        [disabled]="horseRaceList.length < 0 || (!horseOptions.value.amountTypeId || !horseOptions.value.amount)"
+                        (click)="addAmounts()">Add ></button>
                     </div>
                   </div>
                 </div>
               </form>
             </div>
-            <div class="card col-md-4">
+            <div class="card col-md-4" *ngIf="horseRaceList.length > 0">
               <div class="card-body row">
-                <div class="col-md-7">
-                  <div class="btn-group">
-                    <span class="badge badge-sm bg-warning ms-auto">NEW</span>
-                    <span class="badge badge-sm bg-success ms-auto">NEW</span>
-                  </div>
-                  <div class="btn-group">
-                    <span class="badge badge-sm bg-warning ms-auto">NEW</span>
-                    <span class="badge badge-sm bg-success ms-auto">NEW</span>
-                  </div>
-                  <div class="btn-group">
-                    <span class="badge badge-sm bg-warning ms-auto">NEW</span>
-                    <span class="badge badge-sm bg-success ms-auto">NEW</span>
+                <div class="col-md-7 pl-0">
+                  <div class="btn-group pr-1" *ngFor="let item of horseRaceList">
+                    <span class="badge badge-sm bg-warning ms-auto">{{item.horseCode}}</span>
+                    <span class="badge badge-sm bg-success ms-auto">{{item.raceCode}}</span>
                   </div>
                 </div>
-                <div class="col-md-5">
-                  <div class="btn-group">
-                    <span class="badge badge-sm bg-warning ms-auto">Front</span>
-                    <span class="badge badge-sm bg-light ms-auto">50</span>
-                  </div>
-                  <div class="btn-group">
-                    <span class="badge badge-sm bg-warning ms-auto">Back</span>
-                    <span class="badge badge-sm bg-light ms-auto">10</span>
+                <div class="col-md-5 pl-0">
+                  <div class="btn-group" *ngFor="let item of lineAmount">
+                    <span class="badge badge-sm bg-warning ms-auto">{{item.amountTypeId ? 'FRONT' : 'BACK'}}</span>
+                    <span class="badge badge-sm bg-light ms-auto">{{item.amount}}</span>
                   </div>
                 </div>
               </div>
-              <div class="row p-3">
-                <div class="col-md-12">
+              <div class="row p-3 " *ngIf="lineAmount.length  > 0">
+                <div class="col-md-12 pr-0">
                   <button type="button" class="btn btn-sm btn-success float-right">Add to List</button>
                 </div>
               </div>
@@ -276,7 +268,7 @@
             <button [disabled]="createBet.invalid" type="submit" class="btn btn-sm btn-primary" (click)="onSubmit()"><i
                 class="fa fa-dot-circle-o"></i>
               Submit</button>
-            <button type="button" class="btn btn-sm btn-danger" (click)="resetForm()"><i class="fa fa-ban"></i>
+            <button type="button" class="btn btn-sm btn-danger" (click)="resetWindow()"><i class="fa fa-ban"></i>
               Reset</button>
           </div>
         </div>
