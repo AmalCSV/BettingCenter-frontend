@@ -1,9 +1,10 @@
-import { Betts } from './../betting.model';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { BettingService } from './../betting.service';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { SharedApiService } from '../../shared/shared-api.service';
-import { Center, Horse, Amounts } from '../betting.model';
-import { BettingService } from '../betting.service';
+import { Amounts, Center, Horse } from '../betting.model';
+import { Betts } from './../betting.model';
 
 @Component({
   selector: 'app-create-bet',
@@ -24,7 +25,8 @@ export class CreateBetComponent implements OnInit {
 
   public sideOption = ["Front", "Back"];
 
-  constructor(private formBuilder: FormBuilder, private sharedApiService: SharedApiService) {
+  constructor(private formBuilder: FormBuilder, private sharedApiService: SharedApiService,
+    private bettingService: BettingService) {
     this.initForm();
   }
 
@@ -33,17 +35,37 @@ export class CreateBetComponent implements OnInit {
   }
 
   onSubmit() {
+    const formData = this.createBet.value;
+    const user = sessionStorage.getItem('authData');
+    if (user && formData) {
+      let req = {
+        bets : this.betts
+      }
+      Object.assign(req, formData);
+      req['createdBy'] = '31';
+      req['amount'] = formData.bettingAmount;
+      this.bettingService.createBett(req).subscribe((res: any) => {
+        if (res.success) {
+          console.log(res, 'success');
+          this.resetWindow();
+        } else {
+          console.log(res, 'err 1');
+        }
+      }, err => {
+        console.log(err, 'err 2');
+      });
+    }
 
   }
 
   initForm() {
     const date = new Date().getFullYear()+'-'+new Date().getMonth()+'-'+ new Date().getDay();
     this.createBet = this.formBuilder.group({
-      customerCode: this.formBuilder.control('', [Validators.required]),
-      bettingDate: this.formBuilder.control(date, [Validators.required]),
-      centerId: this.formBuilder.control('Select a betting center..', [Validators.required]),
-      bettingAmount: this.formBuilder.control('', [Validators.required]),
-      option: this.formBuilder.control('Select a option..', [Validators.required]),
+      customer: ['', [Validators.required]],
+      bettingDate: ['', [Validators.required]],
+      bettingCenterId: ['', [Validators.required]],
+      bettingAmount: ['', [Validators.required]],
+      amountTypeId: [],
     });
 
     this.horseOptions = this.formBuilder.group({
@@ -83,7 +105,6 @@ export class CreateBetComponent implements OnInit {
         this.horseRaceList.push(new Horse(data));
       }
       this.resetForm(['horseCode', 'raceCode'], this.horseOptions);
-      this.horseCodeInput.nativeElement.focus();
     }
   }
 
@@ -139,6 +160,10 @@ export class CreateBetComponent implements OnInit {
   resetWindow() {
     this.resetForm([], this.horseOptions, true);
     this.resetForm([], this.createBet, true);
+    this.betts = [];
+    this.horseRaceList = [];
+    this.lineAmount = [];
+    this.horseOptions.patchValue({amountTypeId: 1});
   }
 
   clearBets() {
@@ -146,11 +171,11 @@ export class CreateBetComponent implements OnInit {
     this.lineAmount = [];
   }
 
-  get customerCode() { return this.createBet.get('customerCode'); }
+  get customer() { return this.createBet.get('customer'); }
   get bettingDate() { return this.createBet.get('bettingDate'); }
-  get centerId() { return this.createBet.get('centerId'); }
+  get bettingCenterId() { return this.createBet.get('bettingCenterId'); }
   get bettingAmount() { return this.createBet.get('bettingAmount'); }
-  get option() { return this.createBet.get('option'); }
+  get amountTypeId0() { return this.createBet.get('amountTypeId'); }
 
   get horseCode() { return this.horseOptions.get('horseCode'); }
   get raceCode() { return this.horseOptions.get('raceCode'); }

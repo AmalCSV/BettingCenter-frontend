@@ -12,8 +12,8 @@
                 <div class="form-group row">
                   <label class="col-md-3 col-form-label" for="hf-ccode">Customer Code</label>
                   <div class="col-md-9">
-                    <input type="text" id="hf-ccode" name="hf-ccode" class="form-control" formControlName="customerCode"
-                      [ngClass]="customerCode.invalid && (customerCode.dirty || customerCode.touched) ? 'is-invalid' : ''"
+                    <input type="text" id="hf-ccode" name="hf-ccode" class="form-control" formControlName="customer"
+                      [ngClass]="customer.invalid && (customer.dirty || customer.touched) ? 'is-invalid' : ''"
                       placeholder="Enter code.." autocomplete="nope">
                     <div class="invalid-feedback">
                       Customer code should not be empty
@@ -34,8 +34,8 @@
                 <div class="form-group row">
                   <label class="col-md-3 col-form-label" for="hf-bcenteer">Betting center</label>
                   <div class="col-md-9">
-                    <select formControlName="centerId"
-                      [ngClass]="centerId.invalid && (centerId.dirty || centerId.touched) ? 'is-invalid' : ''"
+                    <select formControlName="bettingCenterId"
+                      [ngClass]="bettingCenterId.invalid && (bettingCenterId.dirty || bettingCenterId.touched) ? 'is-invalid' : ''"
                       placeholder="Select a betting center.." class="form-control" id="hf-bcenteer" name="hf-bcenteer">
                       <option *ngFor="let option of centerList" [value]="option.id">
                         {{option.name}}</option>
@@ -66,8 +66,8 @@
                 <div class="form-group row">
                   <label class="col-md-3 col-form-label" for="hf-boption">Option(Double/Triple)</label>
                   <div class="col-md-9">
-                    <select formControlName="option"
-                      [ngClass]="option.invalid && (option.dirty || option.touched) ? 'is-invalid' : ''"
+                    <select formControlName="amountTypeId"
+                      [ngClass]="amountTypeId0.invalid && (amountTypeId0.dirty || amountTypeId0.touched) ? 'is-invalid' : ''"
                       placeholder="Select a option.." class="form-control" id="hf-boption" name="hf-boption">
                       <option selected [disabled]="true">Select a option..</option>
                       <option value="1">Double</option>
@@ -211,7 +211,7 @@
           </div>
 
           <div class="card-footer">
-            <button [disabled]="createBet.invalid" type="submit" class="btn btn-md btn-primary" (click)="onSubmit()"><i
+            <button [disabled]="createBet.invalid || betts.length === 0" type="submit" class="btn btn-md btn-primary" (click)="onSubmit()"><i
                 class="fa fa-dot-circle-o"></i>
               Submit</button>
             <button type="button" class="btn btn-md btn-danger" (click)="resetWindow()"><i class="fa fa-ban"></i>
