@@ -14,6 +14,8 @@ export class CreateBetComponent implements OnInit {
   public horseOptions: FormGroup;
   public createBet: FormGroup;
   public centerList: Array<Center>;
+  public horseRaceList: Array<{ horseCode: string, raceCode: string }>;
+  public lineAmount: Array<{amount: number, amountTypeId: number}>;
 
   public sideOption = ["Front", "Back"];
 
@@ -55,7 +57,7 @@ export class CreateBetComponent implements OnInit {
     } else {
       // Error alert
     }
-    
+
   }
 
   betHorseForm(): FormGroup {
@@ -71,7 +73,7 @@ export class CreateBetComponent implements OnInit {
   }
 
   getCenters() {
-    this.sharedApiService.getCenterList().subscribe((res : any) => {
+    this.sharedApiService.getCenterList().subscribe((res: any) => {
       if (res.Success) {
         this.centerList = Center.list(res.data);
       } else {
@@ -82,7 +84,9 @@ export class CreateBetComponent implements OnInit {
     });
   }
 
+  addHorseRace() {
 
+  }
 
   get customerCode() { return this.createBet.get('customerCode'); }
   get bettingDate() { return this.createBet.get('bettingDate'); }
