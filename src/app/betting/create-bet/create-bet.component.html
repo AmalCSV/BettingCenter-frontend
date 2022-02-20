@@ -98,7 +98,7 @@
                       </td>
                       <td>
                         <div class="btn-group pr-1" *ngFor="let amount of item.amounts">
-                          <span class="badge badge-sm bg-warning ms-auto">{{amount.amountTypeId ? 'FRONT' :
+                          <span class="badge badge-sm bg-warning ms-auto">{{amount.amountTypeId === '1' ? 'FRONT' :
                             'BACK'}}</span>
                           <span class="badge badge-sm bg-light ms-auto">{{amount.amount}}</span>
                         </div>
@@ -192,7 +192,7 @@
                 </div>
                 <div class="col-md-5 pl-0">
                   <div class="btn-group pr-1" *ngFor="let item of lineAmount">
-                    <span class="badge badge-sm bg-warning ms-auto">{{item.amountTypeId ? 'FRONT' : 'BACK'}}</span>
+                    <span class="badge badge-sm bg-warning ms-auto">{{item.amountTypeId === '1' ? 'FRONT' : 'BACK'}}</span>
                     <span class="badge badge-sm bg-light ms-auto">{{item.amount}}</span>
                   </div>
                 </div>
