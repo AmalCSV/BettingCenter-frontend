@@ -12,5 +12,7 @@ export class API_END_POINTS {
      public static UPDATE_CENTERS = environment.baseURL + '/betting-center/update';
      public static CREATE_CENTERS = environment.baseURL + '/betting-center/create';
 
+     public static CREATE_BETT = environment.baseURL + '/betting/create';
+
      public static READ_RACE = environment.baseURL + '/race/read';
 }

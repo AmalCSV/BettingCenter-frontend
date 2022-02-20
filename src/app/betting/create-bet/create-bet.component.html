@@ -1,294 +1,224 @@
 <div class="animated fadeIn">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <strong>Create</strong> Bet
-                </div>
-                <div class="card-body">
-                    <form [formGroup]="createBet" class="form-horizontal" autocomplete="nope">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group row">
-                                    <label class="col-md-3 col-form-label" for="hf-ccode">Customer Code</label>
-                                    <div class="col-md-9">
-                                        <input type="text" id="hf-ccode" name="hf-ccode" class="form-control"
-                                            formControlName="customerCode"
-                                            [ngClass]="customerCode.invalid && (customerCode.dirty || customerCode.touched) ? 'is-invalid' : ''"
-                                            placeholder="Enter code.." autocomplete="nope">
-                                        <div class="invalid-feedback">
-                                            Customer code should not be empty
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 col-form-label" for="hf-bdate">Betting Date</label>
-                                    <div class="col-md-9">
-                                        <input class="form-control" id="hf-bdate" type="date" name="hf-bdate"
-                                            formControlName="bettingDate"
-                                            [ngClass]="bettingDate.invalid && (bettingDate.dirty || bettingDate.touched) ? 'is-invalid' : ''"
-                                            placeholder="Enter date.." autocomplete="nope">
-                                        <div class="invalid-feedback">
-                                            Input correct date
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 col-form-label" for="hf-bcenteer">Betting center</label>
-                                    <div class="col-md-9">
-                                        <select formControlName="centerId"
-                                            [ngClass]="centerId.invalid && (centerId.dirty || centerId.touched) ? 'is-invalid' : ''"
-                                            placeholder="Select a betting center.." class="form-control"
-                                            id="hf-bcenteer" name="hf-bcenteer">
-                                            <option *ngFor="let option of centerList" [value]="option.id">
-                                                {{option.name}}</option>
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            Please select the correct center
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 col-form-label" for="hf-bamount">Betting Amount</label>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">LKR</span>
-                                            </div>
-                                            <input type="number" id="hf-bamount" name="hf-bamount" class="form-control"
-                                                formControlName="bettingAmount"
-                                                [ngClass]="bettingAmount.invalid && (bettingAmount.dirty || bettingAmount.touched) ? 'is-invalid' : ''"
-                                                placeholder="Enter correct amount.." autocomplete="nope">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text">.00</span>
-                                            </div>
-                                        </div>
-                                        <div class="invalid-feedback">
-                                            Should be a valied amount
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-3 col-form-label"
-                                        for="hf-boption">Option(Double/Triple)</label>
-                                    <div class="col-md-9">
-                                        <select formControlName="option"
-                                            [ngClass]="option.invalid && (option.dirty || option.touched) ? 'is-invalid' : ''"
-                                            placeholder="Select a option.." class="form-control" id="hf-boption"
-                                            name="hf-boption">
-                                            <option selected>Select a option..</option>
-                                            <option>Double</option>
-                                            <option>Triple</option>
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            Please select one option
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 tbl-options">
-                                <table class="table table-responsive-sm table-hover table-outline mb-0">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th>Race & Horse</th>
-                                            <th>Front/Back Amount</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="btn-group">
-                                                    <span class="badge badge-sm bg-warning ms-auto">NEW</span>
-                                                    <span class="badge badge-sm bg-success ms-auto">NEW</span>
-                                                </div>
-                                                <div class="btn-group">
-                                                    <span class="badge badge-sm bg-warning ms-auto">NEW</span>
-                                                    <span class="badge badge-sm bg-success ms-auto">NEW</span>
-                                                </div>
-                                                <div class="btn-group">
-                                                    <span class="badge badge-sm bg-warning ms-auto">NEW</span>
-                                                    <span class="badge badge-sm bg-success ms-auto">NEW</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="btn-group">
-                                                    <span class="badge badge-sm bg-warning ms-auto">Front</span>
-                                                    <span class="badge badge-sm bg-light ms-auto">50</span>
-                                                </div>
-                                                <div class="btn-group">
-                                                    <span class="badge badge-sm bg-warning ms-auto">Back</span>
-                                                    <span class="badge badge-sm bg-light ms-auto">10</span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="btn-group">
-                                                    <span class="badge badge-sm bg-warning ms-auto">NEW</span>
-                                                    <span class="badge badge-sm bg-success ms-auto">NEW</span>
-                                                </div>
-                                                <div class="btn-group">
-                                                    <span class="badge badge-sm bg-warning ms-auto">NEW</span>
-                                                    <span class="badge badge-sm bg-success ms-auto">NEW</span>
-                                                </div>
-                                                <div class="btn-group">
-                                                    <span class="badge badge-sm bg-warning ms-auto">NEW</span>
-                                                    <span class="badge badge-sm bg-success ms-auto">NEW</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="btn-group">
-                                                    <span class="badge badge-sm bg-warning ms-auto">Front</span>
-                                                    <span class="badge badge-sm bg-light ms-auto">50</span>
-                                                </div>
-                                                <div class="btn-group">
-                                                    <span class="badge badge-sm bg-warning ms-auto">Back</span>
-                                                    <span class="badge badge-sm bg-light ms-auto">10</span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="btn-group">
-                                                    <span class="badge badge-sm bg-warning ms-auto">NEW</span>
-                                                    <span class="badge badge-sm bg-success ms-auto">NEW</span>
-                                                </div>
-                                                <div class="btn-group">
-                                                    <span class="badge badge-sm bg-warning ms-auto">NEW</span>
-                                                    <span class="badge badge-sm bg-success ms-auto">NEW</span>
-                                                </div>
-                                                <div class="btn-group">
-                                                    <span class="badge badge-sm bg-warning ms-auto">NEW</span>
-                                                    <span class="badge badge-sm bg-success ms-auto">NEW</span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="btn-group">
-                                                    <span class="badge badge-sm bg-warning ms-auto">Front</span>
-                                                    <span class="badge badge-sm bg-light ms-auto">50</span>
-                                                </div>
-                                                <div class="btn-group">
-                                                    <span class="badge badge-sm bg-warning ms-auto">Back</span>
-                                                    <span class="badge badge-sm bg-light ms-auto">10</span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </form>
-                    <div class="row pr-3">
-                        <div class="col-md-8">
-                            <form class="card" [formGroup]="horseOptions">
-                                <div class="card-body">
-                                    <div class="form-group row">
-                                        <div class="col-md-3">
-                                            <label class="col-form-label" for="hf-hcode">Horse & Race Code</label>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input type="text" id="hf-hcode" name="hf-hcode" class="form-control"
-                                                formControlName="horseCode"
-                                                [ngClass]="horseCode.invalid && (horseCode.dirty || horseCode.touched) ? 'is-invalid' : ''"
-                                                placeholder="Enter horse code.." autocomplete="nope">
-                                            <div class="invalid-feedback">
-                                                Horse code required
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="text" id="hf-rcode" name="hf-rcode" class="form-control"
-                                                formControlName="raceCode" [ngClass]="horseCode.invalid && 
-                                                (horseCode.dirty || 
-                                                horseCode.touched) ? 'is-invalid' : ''" placeholder="Enter race code.."
-                                                autocomplete="nope">
-                                            <div class="invalid-feedback">
-                                                Race code should not be empty
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <button class="btn btn-md btn-primary">Add ></button>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-md-3">
-                                            <label class="col-form-label" for="hf-hcode">Front/Back Amount</label>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <select formControlName="amountTypeId" [ngClass]="amountTypeId.invalid && 
-                                                        (amountTypeId.dirty || 
-                                                        amountTypeId.touched) ? 'is-invalid' : ''"
-                                                placeholder="Select a option.." class="form-control" id="hf-side"
-                                                name="hf-side">
-                                                <option value="1">Front</option>
-                                                <option value="2">Back</option>
-                                            </select>
-                                            <div class="invalid-feedback">
-                                                Please select the correct option
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input type="text" id="hf-pamount" name="hf-pamount" class="form-control"
-                                                formControlName="raceCode" [ngClass]="horseCode.invalid && 
-                                                (horseCode.dirty || 
-                                                horseCode.touched) ? 'is-invalid' : ''" placeholder="Enter amount.."
-                                                autocomplete="nope">
-                                            <div class="invalid-feedback">
-                                                Amount should not be empty
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <button class="btn btn-md btn-primary">Add ></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="card col-md-4">
-                            <div class="card-body row">
-                                <div class="col-md-7">
-                                    <div class="btn-group">
-                                        <span class="badge badge-sm bg-warning ms-auto">NEW</span>
-                                        <span class="badge badge-sm bg-success ms-auto">NEW</span>
-                                    </div>
-                                    <div class="btn-group">
-                                        <span class="badge badge-sm bg-warning ms-auto">NEW</span>
-                                        <span class="badge badge-sm bg-success ms-auto">NEW</span>
-                                    </div>
-                                    <div class="btn-group">
-                                        <span class="badge badge-sm bg-warning ms-auto">NEW</span>
-                                        <span class="badge badge-sm bg-success ms-auto">NEW</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="btn-group">
-                                        <span class="badge badge-sm bg-warning ms-auto">Front</span>
-                                        <span class="badge badge-sm bg-light ms-auto">50</span>
-                                    </div>
-                                    <div class="btn-group">
-                                        <span class="badge badge-sm bg-warning ms-auto">Back</span>
-                                        <span class="badge badge-sm bg-light ms-auto">10</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row p-3">
-                                <div class="col-md-12">
-                                    <button type="button" class="btn btn-sm btn-success float-right">Add to List</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="card-footer">
-                        <button [disabled]="createBet.invalid" type="submit" class="btn btn-sm btn-primary"
-                            (click)="onSubmit()"><i class="fa fa-dot-circle-o"></i>
-                            Submit</button>
-                        <button type="button" class="btn btn-sm btn-danger" (click)="resetForm()"><i
-                                class="fa fa-ban"></i>
-                            Reset</button>
-                    </div>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <strong>Create</strong> Bet
         </div>
+        <div class="card-body">
+          <form [formGroup]="createBet" class="form-horizontal" autocomplete="nope">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="hf-ccode">Customer Code</label>
+                  <div class="col-md-9">
+                    <input type="text" id="hf-ccode" name="hf-ccode" class="form-control" formControlName="customer"
+                      [ngClass]="customer.invalid && (customer.dirty || customer.touched) ? 'is-invalid' : ''"
+                      placeholder="Enter code.." autocomplete="nope">
+                    <div class="invalid-feedback">
+                      Customer code should not be empty
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="hf-bdate">Betting Date</label>
+                  <div class="col-md-9">
+                    <input class="form-control" id="hf-bdate" placeholder="yyyy-mm-dd" type="date" name="hf-bdate" formControlName="bettingDate"
+                      [ngClass]="bettingDate.invalid && (bettingDate.dirty || bettingDate.touched) ? 'is-invalid' : ''"
+                      placeholder="Enter date.." autocomplete="nope">
+                    <div class="invalid-feedback">
+                      Input correct date
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="hf-bcenteer">Betting center</label>
+                  <div class="col-md-9">
+                    <select formControlName="bettingCenterId"
+                      [ngClass]="bettingCenterId.invalid && (bettingCenterId.dirty || bettingCenterId.touched) ? 'is-invalid' : ''"
+                      placeholder="Select a betting center.." class="form-control" id="hf-bcenteer" name="hf-bcenteer">
+                      <option *ngFor="let option of centerList" [value]="option.id">
+                        {{option.name}}</option>
+                    </select>
+                    <div class="invalid-feedback">
+                      Please select the correct center
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="hf-bamount">Betting Amount</label>
+                  <div class="col-md-9">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">LKR</span>
+                      </div>
+                      <input type="number" id="hf-bamount" name="hf-bamount" class="form-control"
+                        formControlName="bettingAmount"
+                        [ngClass]="bettingAmount.invalid && (bettingAmount.dirty || bettingAmount.touched) ? 'is-invalid' : ''"
+                        placeholder="Enter correct amount.." autocomplete="nope">
+
+                    </div>
+                    <div class="invalid-feedback">
+                      Should be a valied amount
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-3 col-form-label" for="hf-boption">Option(Double/Triple)</label>
+                  <div class="col-md-9">
+                    <select formControlName="amountTypeId"
+                      [ngClass]="amountTypeId0.invalid && (amountTypeId0.dirty || amountTypeId0.touched) ? 'is-invalid' : ''"
+                      placeholder="Select a option.." class="form-control" id="hf-boption" name="hf-boption">
+                      <option selected [disabled]="true">Select a option..</option>
+                      <option value="1">Double</option>
+                      <option value="2">Triple</option>
+                    </select>
+                    <div class="invalid-feedback">
+                      Please select one option
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 tbl-options" *ngIf="betts.length > 0">
+                <table class="table table-responsive-sm table-hover table-outline mb-0">
+                  <thead class="thead-light">
+                    <tr>
+                      <th>Horse & Race</th>
+                      <th>Front/Back Amount</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of betts">
+                      <td>
+                        <div class="btn-group pr-1" *ngFor="let horse of item.bettingHorse; let i = inex;">
+                          <span class="badge badge-sm bg-warning ms-auto">{{horse.horseCode}}</span>
+                          <span class="badge badge-sm bg-success ms-auto">{{horse.raceCode}}</span>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="btn-group pr-1" *ngFor="let amount of item.amounts">
+                          <span class="badge badge-sm bg-warning ms-auto">{{amount.amountTypeId ? 'FRONT' :
+                            'BACK'}}</span>
+                          <span class="badge badge-sm bg-light ms-auto">{{amount.amount}}</span>
+                        </div>
+                      </td>
+                      <td>
+                        <button type="button" (click)="deleteBett(i)" class="btn btn-sm btn-danger">
+                          <i class="fa fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </form>
+          <div class="row pr-3">
+            <div class="col-md-8">
+              <form class="card" [formGroup]="horseOptions">
+                <div class="card-body">
+                  <div class="form-group row">
+                    <div class="col-md-3">
+                      <label class="col-form-label" for="hf-hcode">Horse & Race Code</label>
+                    </div>
+                    <div class="col-md-4">
+                      <input type="text" id="hf-hcode" #horseCodeInput name="hf-hcode" class="form-control" formControlName="horseCode"
+                        [ngClass]="horseCode.invalid && (horseCode.dirty || horseCode.touched) ? 'is-invalid' : ''"
+                        placeholder="Horse code.." autocomplete="nope">
+                      <div class="invalid-feedback">
+                        Horse code required
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <input type="text" id="hf-rcode" name="hf-rcode" class="form-control" formControlName="raceCode"
+                        (keyup.enter)="addHorseRace()" [ngClass]="horseCode.invalid &&
+                                                (horseCode.dirty ||
+                                                horseCode.touched) ? 'is-invalid' : ''" placeholder="Race code.."
+                        autocomplete="nope">
+                      <div class="invalid-feedback">
+                        Race code should not be empty
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <button class="btn btn-md btn-primary"
+                        [disabled]="!horseOptions.value.horseCode || !horseOptions.value.raceCode"
+                        (click)="addHorseRace()">Add ></button>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-md-3">
+                      <label class="col-form-label" for="hf-hcode">Front/Back Amount</label>
+                    </div>
+                    <div class="col-md-3">
+                      <select formControlName="amountTypeId" [ngClass]="amountTypeId.invalid &&
+                                                        (amountTypeId.dirty ||
+                                                        amountTypeId.touched) ? 'is-invalid' : ''"
+                        placeholder="Select a option.." class="form-control" id="hf-side" name="hf-side">
+                        <option value="1">Front</option>
+                        <option value="2">Back</option>
+                      </select>
+                      <div class="invalid-feedback">
+                        Please select the correct option
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <input type="number" id="hf-pamount" name="hf-pamount" class="form-control"
+                        (keyup.enter)="addAmounts()" formControlName="amount" [ngClass]="amount.invalid &&
+                                                (amount.dirty ||
+                                                amount.touched) ? 'is-invalid' : ''" placeholder="Enter amount.."
+                        autocomplete="nope">
+                      <div class="invalid-feedback">
+                        Amount should not be empty
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <button class="btn btn-md btn-primary"
+                        [disabled]="horseRaceList.length <= 0 || (!horseOptions.value.amountTypeId || !horseOptions.value.amount)"
+                        (click)="addAmounts()">Add ></button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="card col-md-4" *ngIf="horseRaceList.length > 0">
+              <div class="card-body row">
+                <div class="col-md-7 pl-0">
+                  <div class="btn-group pr-1" *ngFor="let item of horseRaceList">
+                    <span class="badge badge-sm bg-warning ms-auto">{{item.horseCode}}</span>
+                    <span class="badge badge-sm bg-success ms-auto">{{item.raceCode}}</span>
+                  </div>
+                </div>
+                <div class="col-md-5 pl-0">
+                  <div class="btn-group pr-1" *ngFor="let item of lineAmount">
+                    <span class="badge badge-sm bg-warning ms-auto">{{item.amountTypeId ? 'FRONT' : 'BACK'}}</span>
+                    <span class="badge badge-sm bg-light ms-auto">{{item.amount}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row p-3 " *ngIf="lineAmount.length  > 0">
+                <div class="col-md-12 pr-0">
+                  <button type="button" class="btn btn-sm btn-success float-right" (click)="addToBettList()">Add to
+                    List</button>
+                  <button type="button" class="btn btn-sm btn-light float-right mr-1" (click)="clearBets()">
+                    <i class="fa fa-ban"></i>
+                  </button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button [disabled]="createBet.invalid || betts.length === 0" type="submit" class="btn btn-md btn-primary" (click)="onSubmit()"><i
+                class="fa fa-dot-circle-o"></i>
+              Submit</button>
+            <button type="button" class="btn btn-md btn-danger" (click)="resetWindow()"><i class="fa fa-ban"></i>
+              Reset</button>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
