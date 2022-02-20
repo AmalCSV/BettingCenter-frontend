@@ -11,6 +11,7 @@ import { BettingService } from '../betting.service';
 })
 export class CreateBetComponent implements OnInit {
   public horses: FormArray;
+  public horseOptions: FormGroup;
   public createBet: FormGroup;
   public centerList: Array<Center>;
 
@@ -35,8 +36,15 @@ export class CreateBetComponent implements OnInit {
       centerId: this.formBuilder.control('Select a betting center..', [Validators.required]),
       bettingAmount: this.formBuilder.control('', [Validators.required]),
       option: this.formBuilder.control('Select a option..', [Validators.required]),
-      horses: this.formBuilder.array([this.betHorseForm()])
+      // horses: this.formBuilder.array([this.betHorseForm()])
     });
+
+    this.horseOptions = this.formBuilder.group({
+      horseCode: ['', [Validators.required]],
+      raceCode: ['', [Validators.required]],
+      amountTypeId: ['', [Validators.required]],
+      amount: ['', [Validators.required]]
+    })
 
   }
 
@@ -81,5 +89,10 @@ export class CreateBetComponent implements OnInit {
   get centerId() { return this.createBet.get('centerId'); }
   get bettingAmount() { return this.createBet.get('bettingAmount'); }
   get option() { return this.createBet.get('option'); }
+
+  get horseCode() { return this.horseOptions.get('horseCode'); }
+  get raceCode() { return this.horseOptions.get('raceCode'); }
+  get amountTypeId() { return this.horseOptions.get('amountTypeId'); }
+  get amount() { return this.horseOptions.get('amount'); }
 
 }
