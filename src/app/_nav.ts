@@ -5,15 +5,7 @@ export const navItems: INavData[] = [
     name: 'Dashboard',
     url: '/dashboard',
     icon: 'icon-speedometer',
-    // badge: {
-    //   variant: 'info',
-    //   text: 'NEW'
-    // }
   },
-  // {
-  //   title: true,
-  //   name: 'Theme'
-  // },
   {
     name: 'Betting',
     url: '/betting/all',
@@ -37,7 +29,12 @@ export const navItems: INavData[] = [
       {
         name: 'Betting List',
         url: '/betting/all',
-        icon: 'cil-list-rich'
+        icon: 'cil-list'
+      },
+      {
+        name: 'Race Options',
+        url: '/betting/race',
+        icon: 'cil-flag-alt'
       }
     ]
   },
