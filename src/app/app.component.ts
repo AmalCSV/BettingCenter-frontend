@@ -7,6 +7,7 @@ import { freeSet } from '@coreui/icons';
 @Component({
   // tslint:disable-next-line
   selector: 'body',
+  templateUrl: './app.component.html',
   template: '<router-outlet></router-outlet>',
   providers: [IconSetService],
 })

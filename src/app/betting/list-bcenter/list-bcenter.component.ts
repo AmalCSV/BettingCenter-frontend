@@ -1,3 +1,4 @@
+import { AlertAfService } from './../../shared/alert-af.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BettingService } from '../betting.service';
@@ -23,7 +24,10 @@ export class ListBcenterComponent implements OnInit {
     searchText: new FormControl('')
   });
 
-  constructor(private bettingService: BettingService, private router: Router, private sharedApiService: SharedApiService) { }
+  constructor(private bettingService: BettingService,
+    private router: Router,
+    private sharedApiService: SharedApiService,
+    protected alertAfService: AlertAfService) { }
 
   ngOnInit(): void {
     this.getCenters();
@@ -48,29 +52,33 @@ export class ListBcenterComponent implements OnInit {
   }
 
   search() {
-    const search = this.searchForm.value.searchText.toLocaleLowerCase();
+    this.alertAfService.success("Success", {
+      autoClose: true,
+      keepAfterRouteChange: false
+  });
+    // const search = this.searchForm.value.searchText.toLocaleLowerCase();
 
-    const name = this.centerList.filter(f => {
-      const term = f.name ? f.name.toLocaleLowerCase() : '';
-      if (term.includes(search)) {
-        return f;
-      }
-    });
+    // const name = this.centerList.filter(f => {
+    //   const term = f.name ? f.name.toLocaleLowerCase() : '';
+    //   if (term.includes(search)) {
+    //     return f;
+    //   }
+    // });
 
-    const person = this.centerList.filter(f => {
-      const term = f.contactPerson ? f.contactPerson.toLocaleLowerCase() : '';
-      if (term.includes(search)) {
-        return f;
-      }
-    });
+    // const person = this.centerList.filter(f => {
+    //   const term = f.contactPerson ? f.contactPerson.toLocaleLowerCase() : '';
+    //   if (term.includes(search)) {
+    //     return f;
+    //   }
+    // });
 
-    if (search === '') {
-      this.displayCenterList = this.centerList;
-    } else if (name.length > 0) {
-      this.displayCenterList = name;
-    } else {
-      this.displayCenterList = person;
-    }
+    // if (search === '') {
+    //   this.displayCenterList = this.centerList;
+    // } else if (name.length > 0) {
+    //   this.displayCenterList = name;
+    // } else {
+    //   this.displayCenterList = person;
+    // }
   }
 
   reFill() {
