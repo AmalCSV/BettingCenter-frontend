@@ -52,33 +52,35 @@ export class ListBcenterComponent implements OnInit {
   }
 
   search() {
-    this.alertAfService.success("Success", {
-      autoClose: true,
-      keepAfterRouteChange: false
-  });
-    // const search = this.searchForm.value.searchText.toLocaleLowerCase();
-
-    // const name = this.centerList.filter(f => {
-    //   const term = f.name ? f.name.toLocaleLowerCase() : '';
-    //   if (term.includes(search)) {
-    //     return f;
-    //   }
+    // ALERT CALL
+    //   this.alertAfService.success("Success", {
+    //     autoClose: true,
+    //     keepAfterRouteChange: false
     // });
 
-    // const person = this.centerList.filter(f => {
-    //   const term = f.contactPerson ? f.contactPerson.toLocaleLowerCase() : '';
-    //   if (term.includes(search)) {
-    //     return f;
-    //   }
-    // });
+    const search = this.searchForm.value.searchText.toLocaleLowerCase();
 
-    // if (search === '') {
-    //   this.displayCenterList = this.centerList;
-    // } else if (name.length > 0) {
-    //   this.displayCenterList = name;
-    // } else {
-    //   this.displayCenterList = person;
-    // }
+    const name = this.centerList.filter(f => {
+      const term = f.name ? f.name.toLocaleLowerCase() : '';
+      if (term.includes(search)) {
+        return f;
+      }
+    });
+
+    const person = this.centerList.filter(f => {
+      const term = f.contactPerson ? f.contactPerson.toLocaleLowerCase() : '';
+      if (term.includes(search)) {
+        return f;
+      }
+    });
+
+    if (search === '') {
+      this.displayCenterList = this.centerList;
+    } else if (name.length > 0) {
+      this.displayCenterList = name;
+    } else {
+      this.displayCenterList = person;
+    }
   }
 
   reFill() {
