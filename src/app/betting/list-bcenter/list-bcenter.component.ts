@@ -1,3 +1,4 @@
+import { AlertAfService } from './../../shared/alert-af.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BettingService } from '../betting.service';
@@ -23,7 +24,10 @@ export class ListBcenterComponent implements OnInit {
     searchText: new FormControl('')
   });
 
-  constructor(private bettingService: BettingService, private router: Router, private sharedApiService: SharedApiService) { }
+  constructor(private bettingService: BettingService,
+    private router: Router,
+    private sharedApiService: SharedApiService,
+    protected alertAfService: AlertAfService) { }
 
   ngOnInit(): void {
     this.getCenters();
@@ -48,6 +52,12 @@ export class ListBcenterComponent implements OnInit {
   }
 
   search() {
+    // ALERT CALL
+    //   this.alertAfService.success("Success", {
+    //     autoClose: true,
+    //     keepAfterRouteChange: false
+    // });
+
     const search = this.searchForm.value.searchText.toLocaleLowerCase();
 
     const name = this.centerList.filter(f => {

@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { AlertService } from '../../shared/alert.service';
 import { User } from '../user.model';
 import { UserService } from '../user.service';
 
@@ -22,7 +21,7 @@ export class ListUserComponent implements OnInit {
     searchText: new FormControl('')
   });
 
-  constructor(private userService: UserService, private alertService: AlertService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {;
     this.getUserList()
@@ -56,7 +55,7 @@ export class ListUserComponent implements OnInit {
       console.log(res, "success");
       this.getUserList();
     }, err => {
-      this.alertService.showErrorAlert("Some error occered in server");
+
     });
   }
 

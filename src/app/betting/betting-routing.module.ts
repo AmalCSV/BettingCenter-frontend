@@ -1,3 +1,4 @@
+import { RaceComponent } from './race/race.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BettingSuggestionComponent } from './betting-suggestion/betting-suggestion.component';
@@ -52,6 +53,13 @@ const routes: Routes = [
         component: ListBcenterComponent,
         data: {
           title: 'List Betting Centers'
+        }
+      },
+      {
+        path: 'race',
+        component: RaceComponent,
+        data: {
+          title: 'Race Options'
         }
       }
     ]
