@@ -1,3 +1,4 @@
+import { AuthGuardService } from './../shared/auth-guard.service';
 import { RaceComponent } from './race/race.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -25,42 +26,48 @@ const routes: Routes = [
         component: ListBetComponent,
         data: {
           title: 'Betting List'
-        }
+        },
+        canActivate: [AuthGuardService]
       },
       {
         path: 'create-bet',
         component: CreateBetComponent,
         data: {
           title: 'Create Bet'
-        }
+        },
+        canActivate: [AuthGuardService]
       },
       {
         path: 'betting-suggeestion',
         component: BettingSuggestionComponent,
         data: {
           title: 'Betting Suggeestion'
-        }
+        },
+        canActivate: [AuthGuardService]
       },
       {
         path: 'create-center',
         component: CreateBcenterComponent,
         data: {
           title: 'Create Betting Center'
-        }
+        },
+        canActivate: [AuthGuardService]
       },
       {
         path: 'list-centers',
         component: ListBcenterComponent,
         data: {
           title: 'List Betting Centers'
-        }
+        },
+        canActivate: [AuthGuardService]
       },
       {
         path: 'race',
         component: RaceComponent,
         data: {
           title: 'Race Options'
-        }
+        },
+        canActivate: [AuthGuardService]
       }
     ]
   }
