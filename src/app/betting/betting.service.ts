@@ -26,4 +26,8 @@ export class BettingService {
     return this.http.post(API_END_POINTS.CREATE_BETT, bett);
   }
 
+  updateRace(race: any) {
+    return this.http.post(API_END_POINTS.UPDATE_RACE, race);
+  }
+
 }
