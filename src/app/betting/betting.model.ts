@@ -51,3 +51,31 @@ export class Betts {
     this.amounts = (obj || {}).amounts
   }
 }
+
+export class Race {
+  id: number;
+  name:string;
+  identifier: string;
+  date: string;
+  description: string;
+  extendedJson: string;
+  createdBy: number;
+  createdDate: string;
+  isDeleted: string;
+
+  constructor(obj) {
+    this.id= (obj || {}).id;
+    this.name= (obj || {}).name;
+    this.identifier= (obj || {}).identifier;
+    this.date= (obj || {}).date;
+    this.description= (obj || {}).description;
+    this.extendedJson= (obj || {}).extendedJson;
+    this.createdBy= (obj || {}).createdBy;
+    this.createdDate= (obj || {}).createdDate;
+    this.isDeleted = (obj || {}).isDeleted;
+  }
+
+  static list(data: any): Array<Race> {
+    return data && data.length > 0 ? data.map(m => { return new Race(m) }) : []
+  }
+}

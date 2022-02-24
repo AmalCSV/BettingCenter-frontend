@@ -14,7 +14,7 @@
                   </div>
               </div>
               <div class="card-body">
-                  <form [formGroup]="createCenter" class="form-horizontal" autocomplete="nope">
+                  <form [formGroup]="createRaceForm" class="form-horizontal" autocomplete="nope">
                       <div class="form-group row">
                           <label class="col-md-3 col-form-label" for="hf-name">Name</label>
                           <div class="col-md-9">
@@ -28,18 +28,17 @@
                           </div>
                       </div>
                       <div class="form-group row">
-                          <label class="col-md-3 col-form-label" for="hf-name">Address</label>
-                          <div class="col-md-9">
-                              <textarea id="hf-address" name="hf-address" class="form-control"
-                                  formControlName="address" rows="3"
-                                  [ngClass]="address.invalid && (address.dirty || address.touched) ? 'is-invalid' : ''"
-                                  placeholder="Enter address.." autocomplete="nope"></textarea>
-                              <div class="invalid-feedback">
-                                  Should include a proper address
-                              </div>
+                        <label class="col-md-3 col-form-label" for="hf-name">Identifier</label>
+                        <div class="col-md-9">
+                          <input type="text" id="hf-name" name="hf-name" class="form-control" formControlName="identifier"
+                            [ngClass]="name.invalid && (identifier.dirty || identifier.touched) ? 'is-invalid' : ''" placeholder="Enter identifier.."
+                            autocomplete="nope">
+                          <div class="invalid-feedback">
+                            Should include a proper identifier
                           </div>
+                        </div>
                       </div>
-                      <div class="form-group row">
+                      <!-- <div class="form-group row">
                           <label class="col-md-3 col-form-label" for="hf-person">Responsible Person</label>
                           <div class="col-md-9">
                               <input type="text" id="hf-person" name="hf-person" class="form-control"
@@ -62,11 +61,11 @@
                                   Should include valied contact number
                               </div>
                           </div>
-                      </div>
+                      </div> -->
                   </form>
               </div>
               <div class="card-footer">
-                  <button [disabled]="createCenter.invalid" type="submit" class="btn btn-sm btn-primary"
+                  <button [disabled]="createRaceForm.invalid" type="submit" class="btn btn-sm btn-primary"
                       (click)="onSubmit()"><i class="fa fa-dot-circle-o"></i>
                       {{!updateObj ? 'Submit': 'Update'}}</button>
                   <button type="button" class="btn btn-sm btn-danger" (click)="resetForm()"><i class="fa fa-ban"></i>
@@ -77,7 +76,7 @@
       <div class="col-md-6">
           <div class="card">
               <div class="card-header">
-                  <strong>Center</strong> List
+                  <strong>Race</strong> List
               </div>
               <form [formGroup]="searchForm" method="post" class="form-horizontal" autocomplete="off">
                   <div class="form-group row">
@@ -95,8 +94,8 @@
                   </div>
               </form>
               <div class="table-scroll">
-                  <app-table-list [columnList]="columnList" [rowData]="displayCenterList"
-                      (updateItem)="editCenter($event)"></app-table-list>
+                  <app-table-list [columnList]="columnList" [rowData]="displayRaceList"
+                      (updateItem)="editRace($event)"></app-table-list>
               </div>
           </div>
       </div>

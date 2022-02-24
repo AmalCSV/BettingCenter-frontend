@@ -1,3 +1,5 @@
+import { AlertAfService } from './../../shared/alert-af.service';
+import { Race } from './../betting.model';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SharedApiService } from '../../shared/shared-api.service';
@@ -11,9 +13,9 @@ import { BettingService } from '../betting.service';
 })
 export class RaceComponent implements OnInit {
 
-  public centerList: Array<Center>;
-  public displayCenterList: Array<Center>;
-  public updateObj: Center;
+  public raceList: Array<Race>;
+  public displayRaceList: Array<Race>;
+  public updateObj: Race;
 
   public columnList = [
     "Name", "Identifier", "Date", "Description", "Actions"
@@ -23,26 +25,26 @@ export class RaceComponent implements OnInit {
     searchText: new FormControl('')
   });
 
-  public createCenter = new FormGroup({
+  public createRaceForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    address: new FormControl('', [Validators.required]),
-    contactPerson: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    phone: new FormControl('07', [Validators.required, Validators.minLength(9), Validators.maxLength(10)])
+    identifier: new FormControl('', [Validators.required]),
+    date: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
   });
 
-  constructor(private bettingService: BettingService, private sharedApiService: SharedApiService) { }
-
+  constructor(private sharedApiService: SharedApiService,
+    protected alertAfService: AlertAfService,
+    private bettingService: BettingService) { }
 
   ngOnInit(): void {
-    this.getCenters();
-    this.fillPreviousData();
+    this.getRace();
   }
 
-  getCenters() {
-    this.sharedApiService.getCenterList().subscribe((res: any) => {
+  getRace() {
+    this.sharedApiService.getRace().subscribe((res: any) => {
       if (res.Success) {
-        this.centerList = Center.list(res.data);
-        this.displayCenterList = this.centerList;
+        this.raceList = Race.list(res.data);
+        this.displayRaceList = this.raceList;
       } else {
         console.log("Get center list error", JSON.stringify(res.data));
       }
@@ -51,91 +53,94 @@ export class RaceComponent implements OnInit {
     })
   }
 
-  editCenter(event) {
-    this.createCenter.patchValue(event);
+  editRace(event) {
+    this.createRaceForm.patchValue(event);
     this.updateObj = event;
   }
 
   search() {
 
     const search = this.searchForm.value.searchText.toLocaleLowerCase();
-    const name = this.centerList.filter(f => {
+    const name = this.raceList.filter(f => {
       const term = f.name ? f.name.toLocaleLowerCase() : '';
       if (term.includes(search)) {
         return f;
       }
     });
 
-    const person = this.centerList.filter(f => {
-      const term = f.contactPerson ? f.contactPerson.toLocaleLowerCase() : '';
+    const person = this.raceList.filter(f => {
+      const term = f.name ? f.name.toLocaleLowerCase() : '';
       if (term.includes(search)) {
         return f;
       }
     });
 
     if (search === '') {
-      this.displayCenterList = this.centerList;
+      this.displayRaceList = this.raceList;
     } else if (name.length > 0) {
-      this.displayCenterList = name;
+      this.displayRaceList = name;
     } else {
-      this.displayCenterList = person;
+      this.displayRaceList = person;
     }
   }
 
   reFill() {
     const search = this.searchForm.value.searchText.toLocaleLowerCase();
     if (search === '') {
-      this.displayCenterList = this.centerList;
+      this.displayRaceList = this.raceList;
     }
   }
 
   onSubmit() {
     if (!this.updateObj) {
-      const center = this.createCenter.value;
+      const center = this.createRaceForm.value;
       this.bettingService.createCenter(center).subscribe(res => {
-        this.getCenters();
-        this.createCenter.reset();
+        this.getRace();
+        this.createRaceForm.reset();
+        this.alertAfService.success("Successfully added the Race", {
+          autoClose: true,
+          keepAfterRouteChange: false
+        });
       }, err => {
-
+        this.alertAfService.error('Server Error' + JSON.stringify(err), {
+          autoClose: true,
+          keepAfterRouteChange: false
+        });
       });
     } else {
-      this.updateCenter();
+      this.updateRace();
     }
   }
 
   resetForm() {
-    this.createCenter.reset();
+    this.createRaceForm.reset();
     this.updateObj = null;
   }
 
-  updateCenter() {
-    let updateFormData = new Center(this.createCenter.value);
+  updateRace() {
+    let updateFormData = new Center(this.createRaceForm.value);
     updateFormData.id = this.updateObj.id;
-    this.bettingService.updateCenter(updateFormData).subscribe((res: any) => {
+    this.bettingService.updateRace(updateFormData).subscribe((res: any) => {
       if (res && res.message) {
-        this.createCenter.reset();
-        this.getCenters();
+        this.createRaceForm.reset();
+        this.getRace();
       } else {
-
+        this.alertAfService.error(JSON.stringify(res), {
+          autoClose: true,
+          keepAfterRouteChange: false
+        });
       }
     }, err => {
-
+      this.alertAfService.error('Server Error' + JSON.stringify(err), {
+        autoClose: true,
+        keepAfterRouteChange: false
+      });
     });
   }
 
-  fillPreviousData() {
-    const previousData = sessionStorage.getItem('updateCenter');
-    if (previousData) {
-      const parseData = JSON.parse(previousData);
-      this.updateObj = parseData;
-      this.createCenter.patchValue(parseData);
-      sessionStorage.setItem('updateCenter', null);
-    }
-  }
-
-  get name() { return this.createCenter.get('name'); }
-  get address() { return this.createCenter.get('address'); }
-  get contactPerson() { return this.createCenter.get('contactPerson'); }
-  get phone() { return this.createCenter.get('phone'); }
+  get name() { return this.createRaceForm.get('name'); }
+  get identifier() { return this.createRaceForm.get('identifier'); }
+  get date() { return this.createRaceForm.get('date'); }
+  get description() { return this.createRaceForm.get('description'); }
 
 }
