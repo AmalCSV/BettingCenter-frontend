@@ -55,6 +55,11 @@ export const navItems: INavData[] = [
       }
     ]
   },
+  {
+    name: 'Settings',
+    url: '/setting/config',
+    icon: 'cil-settings',
+  },
   // {
   //   name: 'Colors',
   //   url: '/theme/colors',
