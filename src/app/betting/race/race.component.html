@@ -38,30 +38,28 @@
                           </div>
                         </div>
                       </div>
-                      <!-- <div class="form-group row">
-                          <label class="col-md-3 col-form-label" for="hf-person">Responsible Person</label>
-                          <div class="col-md-9">
-                              <input type="text" id="hf-person" name="hf-person" class="form-control"
-                                  formControlName="contactPerson"
-                                  [ngClass]="contactPerson.invalid && (contactPerson.dirty || contactPerson.touched) ? 'is-invalid' : ''"
-                                  placeholder="Responsible person.." autocomplete="nope">
-                              <div class="invalid-feedback">
-                                  Should include person name
-                              </div>
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="hf-bdate">Betting Date</label>
+                        <div class="col-md-9">
+                          <input class="form-control" id="hf-rdate" placeholder="yyyy-mm-dd" type="date" name="hf-rdate" formControlName="date"
+                            [ngClass]="date.invalid && (date.dirty || date.touched) ? 'is-invalid' : ''"
+                            placeholder="Enter date.." autocomplete="nope">
+                          <div class="invalid-feedback">
+                            Input correct date
                           </div>
+                        </div>
                       </div>
                       <div class="form-group row">
-                          <label class="col-md-3 col-form-label" for="hf-phone">Contact No</label>
-                          <div class="col-md-9">
-                              <input type="number" id="hf-phone" name="hf-phone" class="form-control"
-                                  formControlName="phone"
-                                  [ngClass]="phone.invalid && (phone.dirty || phone.touched) ? 'is-invalid' : ''"
-                                  placeholder="Enter Contact NO.." autocomplete="nope">
-                              <div class="invalid-feedback">
-                                  Should include valied contact number
-                              </div>
+                        <label class="col-md-3 col-form-label" for="hf-name">Description</label>
+                        <div class="col-md-9">
+                          <input type="text" id="hf-description" name="hf-description" class="form-control" formControlName="description"
+                            [ngClass]="description.invalid && (description.dirty || identifier.touched) ? 'is-invalid' : ''" placeholder="Enter description.."
+                            autocomplete="nope">
+                          <div class="invalid-feedback">
+                            Should include a proper description
                           </div>
-                      </div> -->
+                        </div>
+                      </div>
                   </form>
               </div>
               <div class="card-footer">
