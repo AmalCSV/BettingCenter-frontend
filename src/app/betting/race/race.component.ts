@@ -93,14 +93,22 @@ export class RaceComponent implements OnInit {
 
   onSubmit() {
     if (!this.updateObj) {
-      const center = this.createRaceForm.value;
-      this.bettingService.createCenter(center).subscribe(res => {
-        this.getRace();
-        this.createRaceForm.reset();
-        this.alertAfService.success("Successfully added the Race", {
-          autoClose: true,
-          keepAfterRouteChange: false
-        });
+      let race = this.createRaceForm.value;
+      Object.assign(race, {extendedJson: '', createdBy: '15', createdDate: new Date()})
+      this.bettingService.createRace(race).subscribe((res : any) => {
+        if (res?.success) {
+          this.getRace();
+          this.createRaceForm.reset();
+          this.alertAfService.success("Successfully added the Race", {
+            autoClose: true,
+            keepAfterRouteChange: false
+          });
+        } else {
+          this.alertAfService.error(JSON.stringify(res), {
+            autoClose: true,
+            keepAfterRouteChange: false
+          });
+        }
       }, err => {
         this.alertAfService.error('Server Error' + JSON.stringify(err), {
           autoClose: true,
