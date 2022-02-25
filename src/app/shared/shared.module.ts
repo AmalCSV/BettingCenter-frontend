@@ -6,12 +6,14 @@ import { AuthGuardService } from './auth-guard.service';
 import { TableListComponent } from './table-list/table-list.component';
 import { SharedApiService } from './shared-api.service';
 import { AlertComponent } from './alert/alert.component';
+import { EndTimeComponent } from './end-time/end-time.component';
 
 
 @NgModule({
   declarations: [
     TableListComponent,
-    AlertComponent
+    AlertComponent,
+    EndTimeComponent
   ],
   imports: [
     CommonModule,
