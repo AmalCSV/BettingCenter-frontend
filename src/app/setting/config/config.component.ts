@@ -13,6 +13,10 @@ export class ConfigComponent implements OnInit {
     tax: new FormControl('', [Validators.required]),
   });
 
+  public settingTime = new FormGroup({
+    endTime: new FormControl('', [Validators.required]),
+  });
+
   constructor() { }
 
   ngOnInit(): void {
@@ -29,5 +33,7 @@ export class ConfigComponent implements OnInit {
   get companyName() { return this.settingForm.get('companyName'); }
   get address() { return this.settingForm.get('address'); }
   get tax() { return this.settingForm.get('tax'); }
+
+  get endTime() { return this.settingTime.get('endTime'); }
 
 }

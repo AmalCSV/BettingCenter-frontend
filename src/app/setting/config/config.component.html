@@ -63,6 +63,37 @@
           </form>
         </div>
       </div>
+      <div class="card">
+        <div class="card-header">
+          <strong>Closing</strong> Time
+        </div>
+        <div class="card-body">
+          <form [formGroup]="settingTime" class="form-horizontal" autocomplete="nope">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="hf-name">Company Name</label>
+              <div class="col-md-7">
+                <div class="input-group">
+                  <input type="number" id="hf-cptime" name="hf-cptime" class="form-control"
+                    formControlName="endTime"
+                    [ngClass]="endTime.invalid && (endTime.dirty || endTime.touched) ? 'is-invalid' : ''"
+                    placeholder="Enter time.." autocomplete="nope">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">AM</span>
+                  </div>
+                </div>
+                <div class="invalid-feedback">
+                  Enter valied time
+                </div>
+              </div>
+              <div class="col-md-2">
+                <button type="button" class="btn btn-md btn-info" (click)="updateForm('time')"><i
+                    class="fa fa-clock-o"></i>
+                  Set Time</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>
