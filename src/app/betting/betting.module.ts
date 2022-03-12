@@ -11,6 +11,7 @@ import { CreateBetComponent } from './create-bet/create-bet.component';
 import { ListBcenterComponent } from './list-bcenter/list-bcenter.component';
 import { ListBetComponent } from './list-bet/list-bet.component';
 import { RaceComponent } from './race/race.component';
+import { CalculateWinningComponent } from './calculate-winning/calculate-winning.component';
 
 
 
@@ -22,7 +23,8 @@ import { RaceComponent } from './race/race.component';
     CreateBcenterComponent,
     ListBcenterComponent,
     ListBetComponent,
-    RaceComponent
+    RaceComponent,
+    CalculateWinningComponent
   ],
   imports: [
     CommonModule,

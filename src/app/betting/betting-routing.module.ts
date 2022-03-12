@@ -1,3 +1,4 @@
+import { CalculateWinningComponent } from './calculate-winning/calculate-winning.component';
 import { AuthGuardService } from './../shared/auth-guard.service';
 import { RaceComponent } from './race/race.component';
 import { NgModule } from '@angular/core';
@@ -66,6 +67,14 @@ const routes: Routes = [
         component: RaceComponent,
         data: {
           title: 'Race Options'
+        },
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: 'calculate',
+        component: CalculateWinningComponent,
+        data: {
+          title: 'Calculate Winning'
         },
         canActivate: [AuthGuardService]
       }

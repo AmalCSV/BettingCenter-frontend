@@ -1,0 +1,77 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <strong>Calculate</strong> Winning
+        </div>
+        <div class="card-body">
+          <form [formGroup]="calulateWinningForm" class="form-horizontal" autocomplete="nope">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="hf-name">Betting Date</label>
+              <div class="col-md-7">
+                <input type="date" id="hf-cptime" name="hf-cptime" class="form-control" formControlName="bittingDate"
+                  [ngClass]="bittingDate.invalid && (bittingDate.dirty || bittingDate.touched) ? 'is-invalid' : ''"
+                  placeholder="Enter time.." autocomplete="nope">
+                <div class="invalid-feedback">
+                  Enter valied date
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="hf-name">Executing Date & Time</label>
+              <div class="col-md-7">
+                <div class="row">
+                  <div class="col-md-6">
+                    <input type="time" id="hf-exdate" name="hf-exdate" class="form-control"
+                      formControlName="executingDate"
+                      [ngClass]="executingDate.invalid && (executingDate.dirty || executingDate.touched) ? 'is-invalid' : ''"
+                      placeholder="Enter time.." autocomplete="nope">
+                  </div>
+                  <div class="col-md-6">
+                    <input type="date" id="hf-cptime" name="hf-cptime" class="form-control"
+                      formControlName="executingTime"
+                      [ngClass]="executingTime.invalid && (executingTime.dirty || executingTime.touched) ? 'is-invalid' : ''"
+                      placeholder="Enter time.." autocomplete="nope">
+                  </div>
+                </div>
+                <div class="invalid-feedback">
+                  Enter valied date
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="hf-name">Start Time</label>
+              <div class="col-md-7">
+                <input type="time" id="hf-cpstarttime" name="hf-cpstarttime" class="form-control" formControlName="startTime"
+                  [ngClass]="startTime.invalid && (startTime.dirty || startTime.touched) ? 'is-invalid' : ''"
+                  placeholder="Enter time.." autocomplete="nope">
+                <div class="invalid-feedback">
+                  Enter valied time
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="hf-name">End Time</label>
+              <div class="col-md-7">
+                <input type="time" id="hf-cpendtime" name="hf-cpentime" class="form-control" formControlName="endTime"
+                  [ngClass]="endTime.invalid && (endTime.dirty || endTime.touched) ? 'is-invalid' : ''"
+                  placeholder="Enter time.." autocomplete="nope">
+                <div class="invalid-feedback">
+                  Enter valied time
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <button [disabled]="calulateWinningForm.invalid" type="submit" class="btn btn-sm btn-primary"
+              (click)="onSubmit()"><i class="fa fa-dot-circle-o"></i>
+              Submit</button>
+          <button type="button" class="btn btn-sm btn-danger" (click)="resetForm()"><i class="fa fa-ban"></i>
+              Reset</button>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
