@@ -13,6 +13,7 @@ import { ListBetComponent } from './list-bet/list-bet.component';
 import { RaceComponent } from './race/race.component';
 import { CalculateWinningComponent } from './calculate-winning/calculate-winning.component';
 import { RaceWinningComponent } from './race-winning/race-winning.component';
+import { WinningListComponent } from './winning-list/winning-list.component';
 
 
 
@@ -26,7 +27,8 @@ import { RaceWinningComponent } from './race-winning/race-winning.component';
     ListBetComponent,
     RaceComponent,
     CalculateWinningComponent,
-    RaceWinningComponent
+    RaceWinningComponent,
+    WinningListComponent
   ],
   imports: [
     CommonModule,

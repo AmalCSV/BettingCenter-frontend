@@ -1,3 +1,4 @@
+import { WinningListComponent } from './winning-list/winning-list.component';
 import { RaceWinningComponent } from './race-winning/race-winning.component';
 import { CalculateWinningComponent } from './calculate-winning/calculate-winning.component';
 import { AuthGuardService } from './../shared/auth-guard.service';
@@ -84,6 +85,14 @@ const routes: Routes = [
         component: RaceWinningComponent,
         data: {
           title: 'Race Winning'
+        },
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: 'race/winning-list',
+        component: WinningListComponent,
+        data: {
+          title: 'Winning List'
         },
         canActivate: [AuthGuardService]
       }
