@@ -16,4 +16,8 @@ export class SharedApiService {
   getRace(){
     return this.http.get(API_END_POINTS.READ_RACE);
   }
+
+  getEndTime() {
+    return this.http.get(API_END_POINTS.SETTING_CLOSING_TIME);
+  }
 }

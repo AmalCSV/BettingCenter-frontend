@@ -17,4 +17,6 @@ export class API_END_POINTS {
      public static READ_RACE = environment.baseURL + '/race/read';
      public static UPDATE_RACE = environment.baseURL + '/race/read';
      public static CREATE_RACE = environment.baseURL + '/race/create';
+
+     public static SETTING_CLOSING_TIME= environment.baseURL + '/betting-closing/read';
 }

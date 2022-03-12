@@ -1,1 +1,99 @@
-<p>config works!</p>
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <strong>Basic</strong> Settings
+        </div>
+        <div class="card-body">
+          <form [formGroup]="settingForm" class="form-horizontal" autocomplete="nope">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="hf-name">Company Name</label>
+              <div class="col-md-7">
+                <input type="text" id="hf-cpname" name="hf-cpname" class="form-control" formControlName="companyName"
+                  [ngClass]="companyName.invalid && (companyName.dirty || companyName.touched) ? 'is-invalid' : ''"
+                  placeholder="Enter name.." autocomplete="nope">
+                <div class="invalid-feedback">
+                  Company Name should be text
+                </div>
+              </div>
+              <div class="col-md-2">
+                <button type="button" class="btn btn-md btn-info" (click)="updateForm('companyName')"><i
+                    class="fa fa-arrow-circle-o-right"></i>
+                  Update</button>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="hf-name">Company Address</label>
+              <div class="col-md-7">
+                <textarea id="hf-cpaddress" rows="4" name="hf-cpaddress" class="form-control" formControlName="address"
+                  [ngClass]="address.invalid && (address.dirty || address.touched) ? 'is-invalid' : ''"
+                  placeholder="Enter name.." autocomplete="nope"></textarea>
+                <div class="invalid-feedback">
+                  Address should be text
+                </div>
+              </div>
+              <div class="col-md-2">
+                <button type="button" class="btn btn-md btn-info" (click)="updateForm('address')"><i
+                    class="fa fa-arrow-circle-o-right"></i>
+                  Update</button>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="hf-name">Tax</label>
+              <div class="col-md-7">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">LKR</span>
+                  </div>
+                  <input type="number" id="hf-cptax" name="hf-cptax" class="form-control" formControlName="tax"
+                    [ngClass]="tax.invalid && (tax.dirty || tax.touched) ? 'is-invalid' : ''"
+                    placeholder="Enter tax amount.." autocomplete="nope">
+                </div>
+                <div class="invalid-feedback">
+                  Tax amount should not be empty
+                </div>
+              </div>
+              <div class="col-md-2">
+                <button type="button" class="btn btn-md btn-info" (click)="updateForm('tax')"><i
+                    class="fa fa-arrow-circle-o-right"></i>
+                  Update</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <strong>Closing</strong> Time
+        </div>
+        <div class="card-body">
+          <form [formGroup]="settingTime" class="form-horizontal" autocomplete="nope">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="hf-name">Company Name</label>
+              <div class="col-md-7">
+                <div class="input-group">
+                  <input type="number" id="hf-cptime" name="hf-cptime" class="form-control"
+                    formControlName="endTime"
+                    [ngClass]="endTime.invalid && (endTime.dirty || endTime.touched) ? 'is-invalid' : ''"
+                    placeholder="Enter time.." autocomplete="nope">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">AM</span>
+                  </div>
+                </div>
+                <div class="invalid-feedback">
+                  Enter valied time
+                </div>
+              </div>
+              <div class="col-md-2">
+                <button type="button" class="btn btn-md btn-info" (click)="updateForm('time')"><i
+                    class="fa fa-clock-o"></i>
+                  Set Time</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
