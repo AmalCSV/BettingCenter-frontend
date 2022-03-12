@@ -45,6 +45,11 @@ export const navItems: INavData[] = [
         name: 'Calculate Winning',
         url: '/betting/race/winning',
         icon: 'cil-running'
+      },
+      {
+        name: 'Winning List',
+        url: '/betting/race/winning-list',
+        icon: 'cil-list'
       }
     ]
   },
