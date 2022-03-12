@@ -35,6 +35,11 @@ export const navItems: INavData[] = [
         name: 'Race Options',
         url: '/betting/race',
         icon: 'cil-flag-alt'
+      },
+      {
+        name: 'Calculate Winning',
+        url: '/betting/calculate',
+        icon: 'cil-calculator'
       }
     ]
   },
