@@ -1,5 +1,6 @@
+import { filter } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import {Component} from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { navItems } from '../../_nav';
 import { SharedApiService } from '../../shared/shared-api.service';
 
@@ -7,13 +8,22 @@ import { SharedApiService } from '../../shared/shared-api.service';
   selector: 'app-dashboard',
   templateUrl: './default-layout.component.html'
 })
-export class DefaultLayoutComponent {
+export class DefaultLayoutComponent implements AfterViewInit{
   public sidebarMinimized = false;
   public navItems = navItems;
-  public closingTime: any;
+  public closingTime = [];
 
   constructor(private router: Router, ) {
 
+  }
+
+  ngAfterViewInit() {
+   const closeList  = sessionStorage.getItem('bettingClose');
+   this.closingTime = closeList ? JSON.parse(closeList).filter(f => {
+     if(new Date(f.bettingDate) === new Date()) {
+      return f;
+     }
+   }): [];
   }
 
   toggleMinimize(e) {
