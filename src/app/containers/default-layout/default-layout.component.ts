@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { navItems } from '../../_nav';
 import { SharedApiService } from '../../shared/shared-api.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,14 +14,15 @@ export class DefaultLayoutComponent implements AfterViewInit{
   public navItems = navItems;
   public closingTime = [];
 
-  constructor(private router: Router, ) {
+  constructor(private router: Router, private datePipe: DatePipe) {
 
   }
 
   ngAfterViewInit() {
    const closeList  = sessionStorage.getItem('bettingClose');
    this.closingTime = closeList ? JSON.parse(closeList).filter(f => {
-     if(new Date(f.bettingDate) === new Date()) {
+    const today = this.datePipe.transform(new Date(), 'yyyy-MM-dd')
+     if(f.bettingDate === today) {
       return f;
      }
    }): [];

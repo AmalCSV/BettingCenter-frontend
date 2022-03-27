@@ -1,7 +1,7 @@
 import { SharedModule } from './shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LocationStrategy, HashLocationStrategy, DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -74,7 +74,8 @@ import { ChartsModule } from 'ng2-charts';
       provide: LocationStrategy,
       useClass: HashLocationStrategy
     },
-    IconSetService
+    IconSetService,
+    DatePipe
   ],
   bootstrap: [ AppComponent ]
 })

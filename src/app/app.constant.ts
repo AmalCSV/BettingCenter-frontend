@@ -22,4 +22,5 @@ export class API_END_POINTS {
 
      public static SETTING_CREATE = environment.baseURL + '/settings/create';
      public static GET_SETTING_CLOSING = environment.baseURL + '/betting-closing/read';
+     public static CREATE_SETTING_CLOSING = environment.baseURL + '/betting-closing/create';
 }

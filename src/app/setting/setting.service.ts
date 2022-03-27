@@ -13,4 +13,8 @@ export class SettingService {
     return this.http.post(API_END_POINTS.SETTING_CREATE, setting);
   }
 
+  bettingClosing(setting: any) {
+    return this.http.post(API_END_POINTS.CREATE_SETTING_CLOSING, setting);
+  }
+
 }
