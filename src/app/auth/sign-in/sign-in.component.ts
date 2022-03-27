@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SharedApiService } from '../../shared/shared-api.service';
 import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-sign-in',
@@ -9,13 +10,13 @@ import { AuthService } from '../auth.service';
 })
 export class SignInComponent implements OnInit {
   public loginError: string;
-  
+
   public loginForm = new FormGroup({
     userName: new FormControl('', [Validators.required,Validators.minLength(5)]),
     password: new FormControl('', [Validators.required,Validators.minLength(8)])
   });
 
-  constructor(private authService: AuthService , private router: Router) { }
+  constructor(private authService: AuthService , private router: Router, private sharedApiService: SharedApiService) { }
 
   ngOnInit(): void {
   }
@@ -24,7 +25,14 @@ export class SignInComponent implements OnInit {
     const loginReq = this.loginForm.value;
     this.authService.login(loginReq).subscribe((res: any) => {
       if (res.success) {
-        sessionStorage.setItem('authData', JSON.stringify(res.data))
+        this.sharedApiService.bettingClosing().subscribe((res : any) => {
+          if (res.Success) {
+            sessionStorage.setItem('bettingClose',JSON.stringify(res.data));
+          }
+        }, err => {
+          // Error
+        });
+        sessionStorage.setItem('authData', JSON.stringify(res.data));
         this.router.navigate(['dashboard'])
       } else {
         // Handel the API error
@@ -34,9 +42,9 @@ export class SignInComponent implements OnInit {
     });
 
     /**
-     *  Sample API call to 
+     *  Sample API call to
      *  Test Loader screen
-     * */ 
+     * */
     // this.authService.testGetApi().subscribe(res => {
     //   console.log(res);
     // }, error => {
