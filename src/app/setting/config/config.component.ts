@@ -1,3 +1,4 @@
+import { SettingService } from './../setting.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
@@ -17,7 +18,7 @@ export class ConfigComponent implements OnInit {
     endTime: new FormControl('', [Validators.required]),
   });
 
-  constructor() { }
+  constructor(private settingService: SettingService) { }
 
   ngOnInit(): void {
   }
@@ -27,7 +28,18 @@ export class ConfigComponent implements OnInit {
   }
 
   updateForm(attribute) {
+    const formData = this.settingForm.value;
+    formData['extendedJson'] = '';
+    this.settingService.createSetting(formData).subscribe(res => {
+      debugger
+      if (res) {
 
+      } else {
+
+      }
+    }, error => {
+      console.log(error)
+    });
   }
 
   get companyName() { return this.settingForm.get('companyName'); }

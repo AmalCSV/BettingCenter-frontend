@@ -18,7 +18,7 @@
                 </div>
               </div>
               <div class="col-md-2">
-                <button type="button" class="btn btn-md btn-info" (click)="updateForm('companyName')"><i
+                <button type="button" class="btn btn-md btn-info" [disabled]="(companyName.invalid && (companyName.dirty || companyName.touched))" (click)="updateForm('companyName')"><i
                     class="fa fa-arrow-circle-o-right"></i>
                   Update</button>
               </div>
@@ -34,7 +34,7 @@
                 </div>
               </div>
               <div class="col-md-2">
-                <button type="button" class="btn btn-md btn-info" (click)="updateForm('address')"><i
+                <button type="button" class="btn btn-md btn-info" [disabled]="address.invalid && (address.dirty || address.touched)" (click)="updateForm('address')"><i
                     class="fa fa-arrow-circle-o-right"></i>
                   Update</button>
               </div>
@@ -55,7 +55,7 @@
                 </div>
               </div>
               <div class="col-md-2">
-                <button type="button" class="btn btn-md btn-info" (click)="updateForm('tax')"><i
+                <button type="button" class="btn btn-md btn-info" [disabled]="tax.invalid && (tax.dirty || tax.touched)" (click)="updateForm('tax')"><i
                     class="fa fa-arrow-circle-o-right"></i>
                   Update</button>
               </div>

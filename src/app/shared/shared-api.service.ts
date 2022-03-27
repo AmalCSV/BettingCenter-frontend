@@ -20,4 +20,9 @@ export class SharedApiService {
   getEndTime() {
     return this.http.get(API_END_POINTS.SETTING_CLOSING_TIME);
   }
+
+  bettingClosing() {
+    return this.http.get(API_END_POINTS.GET_SETTING_CLOSING);
+  }
+
 }

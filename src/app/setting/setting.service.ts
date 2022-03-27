@@ -1,3 +1,5 @@
+import { API_END_POINTS } from './../app.constant';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,5 +7,10 @@ import { Injectable } from '@angular/core';
 })
 export class SettingService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  createSetting(setting: any) {
+    return this.http.post(API_END_POINTS.SETTING_CREATE, setting);
+  }
+
 }
