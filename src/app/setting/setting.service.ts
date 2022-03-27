@@ -17,4 +17,8 @@ export class SettingService {
     return this.http.post(API_END_POINTS.CREATE_SETTING_CLOSING, setting);
   }
 
+  bettingClosingTimes() {
+    return this.http.get(API_END_POINTS.GET_SETTING_CLOSING);
+  }
+
 }

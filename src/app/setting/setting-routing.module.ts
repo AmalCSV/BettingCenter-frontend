@@ -1,3 +1,4 @@
+import { ClosingTimeComponent } from './closing-time/closing-time.component';
 import { AuthGuardService } from './../shared/auth-guard.service';
 import { ConfigComponent } from './config/config.component';
 import { SettingComponent } from './setting.component';
@@ -21,6 +22,14 @@ const routes: Routes = [
         component: ConfigComponent,
         data: {
           title: 'Configuration'
+        },
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: 'time',
+        component: ClosingTimeComponent,
+        data: {
+          title: 'Closing Time'
         },
         canActivate: [AuthGuardService]
       },

@@ -6,10 +6,12 @@ import { ConfigComponent } from './config/config.component';
 import { SettingRoutingModule } from './setting-routing.module';
 import { SettingComponent } from './setting.component';
 import { SettingService } from './setting.service';
+import { ClosingTimeComponent } from './closing-time/closing-time.component';
 @NgModule({
   declarations: [
     SettingComponent,
-    ConfigComponent
+    ConfigComponent,
+    ClosingTimeComponent
   ],
   imports: [
     CommonModule,

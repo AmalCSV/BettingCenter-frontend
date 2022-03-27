@@ -1,0 +1,53 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <strong>Closing</strong> Time
+        </div>
+        <div class="card-body">
+          <form [formGroup]="settingTime" class="form-horizontal" autocomplete="nope">
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label" for="hf-name">Date & time</label>
+              <div class="col-md-7">
+                <div class="row">
+                  <div class="col-md-6">
+                    <input type="date" id="hf-cptime" name="hf-cptime" class="form-control"
+                      formControlName="bettingDate"
+                      [ngClass]="bettingDate.invalid && (bettingDate.dirty || bettingDate.touched) ? 'is-invalid' : ''"
+                      placeholder="Enter date.." autocomplete="nope">
+                  </div>
+                  <div class="col-md-6">
+                    <input type="time" id="hf-exdate" name="hf-exdate" class="form-control"
+                      formControlName="closingTime"
+                      [ngClass]="closingTime.invalid && (closingTime.dirty || closingTime.touched) ? 'is-invalid' : ''"
+                      placeholder="Enter time.." autocomplete="nope">
+                  </div>
+
+                </div>
+                <div class="invalid-feedback">
+                  Enter valied time
+                </div>
+              </div>
+              <div class="col-md-2">
+                <button type="button" class="btn btn-md btn-info" [disabled]="settingTime.invalid" (click)="updateClosingTime()"><i
+                    class="fa fa-clock-o"></i>
+                  Set Time</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+            <strong>Time</strong> List
+        </div>
+        <div class="table-scroll">
+            <app-table-list [columnList]="columnList" [rowData]="displayTimes"></app-table-list>
+        </div>
+    </div>
+
+    </div>
+  </div>
+</div>
