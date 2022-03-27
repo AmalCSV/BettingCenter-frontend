@@ -4,7 +4,7 @@
   [navbarBrandFull]="{src: 'assets/img/brand/logo-new.png', width: 89, height: 25, alt: 'CoreUI Logo'}"
   [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'CoreUI Logo'}"
   [sidebarToggler]="'lg'"
-  [asideMenuToggler]="'lg'">
+  [asideMenuToggler]="false">
   <ul class="nav navbar-nav d-md-down-none">
     <li class="nav-item px-3">
       <!-- <a class="nav-link" href="#">Dashboard</a> -->
@@ -61,7 +61,7 @@
       <!-- Breadcrumb Menu-->
       <li class="breadcrumb-menu d-md-down-none">
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown" >
-          <button type="button" id="btn-end-time" class="btn btn-block btn-warning btn-end-time">{{closingTime.length > 0 ? (closingTime[0].closingTime | date: 'shortTime') : '04.00 PM'}}</button>
+          <button type="button" id="btn-end-time" class="btn btn-block btn-warning btn-end-time">{{closingTime.length > 0 ? (closingTime[0].closingTime ) : '04.00 PM'}}</button>
           <!-- <a class="btn" href="#"><i class="icon-speech"></i></a>
           <a class="btn" [routerLink]="['/dashboard']"><i class="icon-graph"></i> &nbsp;Dashboard</a>
           <a class="btn" href="#"><i class="icon-settings"></i> &nbsp;Settings</a> -->

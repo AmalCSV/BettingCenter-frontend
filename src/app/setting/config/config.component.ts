@@ -14,11 +14,6 @@ export class ConfigComponent implements OnInit {
     tax: new FormControl('', [Validators.required]),
   });
 
-  public settingTime = new FormGroup({
-    closingTime: new FormControl('', [Validators.required]),
-    bettingDate: new FormControl(new Date(), [Validators.required]),
-  });
-
   constructor(private settingService: SettingService) { }
 
   ngOnInit(): void {
@@ -43,22 +38,8 @@ export class ConfigComponent implements OnInit {
     });
   }
 
-  updateClosingTime() {
-    const formData = this.settingTime.value;
-    const authData = JSON.parse(sessionStorage.getItem('authData'));
-    formData['CreatedBy'] = authData.id;
-    this.settingService.bettingClosing(formData).subscribe(res => {
-
-    }, error => {
-
-    });
-  }
-
   get companyName() { return this.settingForm.get('companyName'); }
   get address() { return this.settingForm.get('address'); }
   get tax() { return this.settingForm.get('tax'); }
-
-  get closingTime() { return this.settingTime.get('closingTime'); }
-  get bettingDate() { return this.settingTime.get('bettingDate'); }
 
 }

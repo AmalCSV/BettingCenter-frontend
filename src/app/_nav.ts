@@ -74,6 +74,18 @@ export const navItems: INavData[] = [
     name: 'Settings',
     url: '/setting/config',
     icon: 'cil-settings',
+    children: [
+      {
+        name: 'Basic settings',
+        url: '/setting/config',
+        icon: 'cil-apps-settings'
+      },
+      {
+        name: 'Closing Time',
+        url: '/setting/time',
+        icon: 'cil-av-timer'
+      }
+    ]
   },
   // {
   //   name: 'Colors',
